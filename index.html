@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harekrishna - Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="script.js" defer></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script>
+   (function(){
+      emailjs.init("9QrxFWV8Q1pfl-yZK");
+   })();
+</script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <nav class="navbar">
+
+        <!-- LEFT -->
+        <div class="left">
+            <div class="menu-icon" onclick="toggleMenu(this)">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+
+            <!-- MENU -->
+            <div id="menu" class="menu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact Me</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right">Harekrishna's Portfolio</div>
+
+    </nav>
+</header>
+
+<!-- HOME SECTION -->
+<section id="home" class="home">
+    <div class="home-container">
+
+        <img src="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\hari.png.jpeg"
+             class="profile">
+
+       <h2 class="name">Hi, My name is Harekrishna Maity</h2>
+
+<h2>I am a <span class="changing-text"></span></h2>
+        <p>
+            I'm a BSc Computer Science student passionate about building
+            responsive, user-friendly websites using modern technologies.
+        </p>
+
+    </div>
+</section>
+<div class="button-container">
+
+    <button class="profile-btn"
+    onclick="window.open('https://github.com/HarekrishnaMaity/github-demo.git','_blank')">
+        GitHub
+    </button>
+
+    <button class="profile-btn"
+    onclick="window.open('resume.pdf')">
+        Download Resume(coming soon)
+    </button>
+
+</div>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="about">
+    <div class="about-container">
+
+        <img src="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\hari2.png.jpeg"
+             class="about-img">
+
+        <div class="about-text">
+            <h1>About Me</h1>
+
+            <p>
+                I am a BSc Computer Science student with a strong interest in web development.
+                I enjoy building responsive websites using HTML, CSS, and JavaScript.
+            </p>
+
+            <p>
+                Currently, I am learning new technologies and improving my skills
+                to become a professional developer.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== PROJECT SECTION ===== -->
+<section class="projects-section">
+
+    <h2 class="project-heading">My Projects</h2>
+
+    <p class="coming-soon">Coming Soon...</p>
+
+</section>
+
+<!-- SKILLS SECTION -->
+<section id="skills" class="skills-section">
+
+    <h1 class="section-title">My Skills</h1>
+
+    <div class="skills-container">
+
+        <!-- HTML -->
+        <div class="skill-card">
+            <div class="skill-icon">🌐</div>
+            <h3>HTML</h3>
+
+            <div class="skill-bar">
+                <div class="progress html"></div>
+            </div>
+
+            <span>90%</span>
+        </div>
+
+        <!-- CSS -->
+        <div class="skill-card">
+            <div class="skill-icon">🎨</div>
+            <h3>CSS</h3>
+
+            <div class="skill-bar">
+                <div class="progress css"></div>
+            </div>
+
+            <span>85%</span>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="skill-card">
+            <div class="skill-icon">⚡</div>
+            <h3>JavaScript</h3>
+
+            <div class="skill-bar">
+                <div class="progress javascript"></div>
+            </div>
+
+            <span>75%</span>
+        </div>
+
+        <!-- Java -->
+        <div class="skill-card">
+            <div class="skill-icon">☕</div>
+            <h3>Java</h3>
+
+            <div class="skill-bar">
+                <div class="progress java"></div>
+            </div>
+
+            <span>70%</span>
+        </div>
+
+        <!-- Python -->
+        <div class="skill-card">
+            <div class="skill-icon">🐍</div>
+            <h3>Python</h3>
+
+            <div class="skill-bar">
+                <div class="progress python"></div>
+            </div>
+
+            <span>80%</span>
+        </div>
+
+        <!-- C -->
+        <div class="skill-card">
+            <div class="skill-icon">💻</div>
+            <h3>C</h3>
+
+            <div class="skill-bar">
+                <div class="progress c"></div>
+            </div>
+
+            <span>75%</span>
+        </div>
+
+        <!-- C++ -->
+        <div class="skill-card">
+            <div class="skill-icon">🚀</div>
+            <h3>C++</h3>
+
+            <div class="skill-bar">
+                <div class="progress cpp"></div>
+            </div>
+
+            <span>78%</span>
+        </div>
+
+        <!-- Git -->
+        <div class="skill-card">
+            <div class="skill-icon">🔧</div>
+            <h3>Git</h3>
+
+            <div class="skill-bar">
+                <div class="progress git"></div>
+            </div>
+
+            <span>70%</span>
+        </div>
+        <div class="skill-card">
+    <div class="skill-icon">🗄️</div>
+    <h3>SQL</h3>
+
+    <div class="skill-bar">
+        <div class="progress sql"></div>
+    </div>
+
+    <span>85%</span>
+</div>
+
+        <!-- GitHub -->
+        <div class="skill-card">
+            <div class="skill-icon">🐙</div>
+            <h3>GitHub</h3>
+
+            <div class="skill-bar">
+                <div class="progress github"></div>
+            </div>
+
+            <span>72%</span>
+        </div>
+<div class="skill-card">
+    <div class="skill-icon">🧠</div>
+    <h3>DSA</h3>
+
+    <div class="skill-bar">
+        <div class="progress dsa"></div>
+    </div>
+
+    <span>75%</span>
+</div>
+
+</section>
+
+<!-- EDUCATION SECTION -->
+
+<section id="education" class="education-section">
+
+    <h1 class="education-title">Education</h1>
+
+    <div class="education-container">
+
+        <!-- COLLEGE -->
+
+        <div class="education-card">
+
+            <img src="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\mcc.png.jpg"
+                 alt="College"
+                 class="education-img">
+
+            <h2>BSc in Computer Science</h2>
+
+            <h3>Vidyasagar University</h3>
+
+            <p>
+                Currently pursuing Bachelor of Science in Computer Science.
+                Learning programming, web development, and software development at Midnapore City College.
+            </p>
+
+            <span>2023 - 2027</span>
+
+        </div>
+
+        <!-- SCHOOL -->
+
+        <div class="education-card">
+
+            <img src="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\mmc2.png.webp"
+                 alt="School"
+                 class="education-img">
+
+            <h2>Higher Secondary</h2>
+
+            <h3>WBCHSE Board</h3>
+
+            <p>
+                Completed Higher Secondary education with science stream at Madanmohanchak Chowdhury Institution.
+            </p>
+
+            <span>2023</span>
+
+        </div>
+
+        <!-- SECONDARY -->
+
+        <div class="education-card">
+
+            <img src="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\mmc.png.jpeg"
+                 alt="Secondary School"
+                 class="education-img">
+
+
+            <h2>Secondary Education</h2>
+
+            <h3>WBBSE Board</h3>
+
+            <p>
+                Completed secondary education with good academic performance at Madanmohanchak Chowdhury Institution.
+            </p>
+
+            <span>2021</span>
+
+        </div>
+
+    </div>
+    <!-- ================= CERTIFICATE SECTION ================= -->
+
+<section id="certificates" class="certificate-section">
+
+    <h2 class="section-title">My Certificates</h2>
+
+    <div class="certificate-container">
+
+        <!-- Certificate Card -->
+        <div class="certificate-card">
+
+            <!-- Certificate Image -->
+            <div class="certificate-img-box">
+                <img src="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\certificate.png.jpg" alt="Certificate">
+            </div>
+
+            <!-- Certificate Title -->
+            <h3>AI & Innovation Internship</h3>
+
+            <!-- Organization -->
+            <p class="certificate-org">
+                CSRBOX × IBM SkillsBuild
+            </p>
+
+            <!-- Description -->
+            <p class="certificate-text">
+                Successfully completed the “Agentic AI: From Learner to Builder”
+                internship program in collaboration with CSRBOX.
+                Learned AI fundamentals, automation workflows,
+                and real-world AI project development.
+            </p>
+
+            <!-- Skills -->
+            <div class="certificate-skills">
+                <span>Agentic AI</span>
+                <span>Automation</span>
+                <span>AI Tools</span>
+                <span>Project Building</span>
+            </div>
+
+            <!-- Button -->
+            <a href="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\certificate.png.jpg" target="_blank" class="certificate-btn">
+                View Certificate
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+    </div>
+
+</section>
+
+</section>
+<!-- CONTACT SECTION -->
+<!-- CONTACT SECTION -->
+
+<section id="contact" class="contact-section">
+
+    <h2 class="contact-title">Contact Me</h2>
+
+    <div class="contact-container">
+
+        <!-- LEFT SIDE -->
+
+        <div class="contact-info">
+
+            <h3>Get In Touch</h3>
+
+            <p>
+                Feel free to contact me for projects,
+                collaboration or any queries.
+            </p>
+
+            <div class="info-box">
+                <p>📧 krishnamaity9478@gmail.com</p>
+            </div>
+
+            <div class="info-box">
+                <p>📞 +91 9339683725</p>
+            </div>
+
+            <div class="info-box">
+                <p>📍 West Bengal, India</p>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+
+        <form class="contact-form" id="contact-form">
+
+            <h3>Send Message</h3>
+
+            <input type="text"
+                   name="from_name"
+                   placeholder="Your Name"
+                   required>
+
+            <input type="email"
+                   name="from_email"
+                   placeholder="Your Email"
+                   required>
+
+            <textarea name="message"
+                      rows="8"
+                      placeholder="Your Message"
+                      required></textarea>
+
+            <button type="submit">
+                Send Message
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+<footer class="footer">
+
+    <div class="footer-content">
+        <h2>Harekrishna Maity</h2>
+        <p>Web Developer | Programmer | Designer</p>
+    </div>
+
+    <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <div class="footer-social">
+        <a href="#">🌐</a>
+        <a href="#">📘</a>
+        <a href="#">📸</a>
+        <a href="#">💼</a>
+    </div>
+
+    <p class="copyright">
+        &copy; 2026 Harekrishna Maity. All Rights Reserved.
+    </p>
+
+</footer>
+</body>
+</html>
