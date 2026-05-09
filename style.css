@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: rgb(7, 4, 30);
     font-family: Poppins, sans-serif;
@@ -16,28 +20,25 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 12px 15px;
-
-    /* Deep white glass effect */
-    background-color: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(10px);
-
     position: relative;
+    flex-wrap: wrap;
 }
 
 /* LEFT */
 .left {
-    font-weight: bold;
-    color: black;
+    z-index: 2;
 }
 
 /* RIGHT */
 .right {
+    margin-left: auto;
     font-size: 16px;
     font-weight: 600;
-    color: black;
 }
 
-/* HAMBURGER */
+/* =========================
+   HAMBURGER ICON
+========================= */
 .menu-icon {
     width: 28px;
     cursor: pointer;
@@ -45,30 +46,40 @@ body {
 
 .menu-icon div {
     height: 3px;
-    background: black;
+    background: white;   /* default white */
     margin: 5px 0;
     border-radius: 2px;
     transition: 0.4s;
 }
 
-/* ANIMATION */
+/* AFTER CLICK COLOR CHANGE */
+.menu-icon.active div {
+    background: rgb(14, 24, 115);
+}
+
+/* ICON ANIMATION */
 .menu-icon.active .line1 {
     transform: rotate(45deg) translate(5px, 5px);
 }
+
 .menu-icon.active .line2 {
     opacity: 0;
 }
+
 .menu-icon.active .line3 {
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* MENU */
+/* =========================
+   MENU BOX
+========================= */
 .menu {
     position: absolute;
-    top: 60px;
+    top: 55px;
     left: 10px;
     width: 200px;
-    background-color: white;
+
+    background-color: rgb(14, 24, 115);
     padding: 10px;
     border-radius: 10px;
 
@@ -77,14 +88,16 @@ body {
     transition: 0.3s ease;
     opacity: 0;
 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
+/* SHOW MENU */
 .menu.show {
     transform: scaleY(1);
     opacity: 1;
 }
 
+/* MENU LIST */
 .menu ul {
     list-style: none;
 }
@@ -93,21 +106,20 @@ body {
     margin: 8px 0;
 }
 
+/* LINKS */
 .menu a {
     display: block;
     padding: 10px;
     font-size: 15px;
-    color: black;
+    color: white;
     text-decoration: none;
     border-radius: 6px;
+    transition: 0.3s;
 }
 
 .menu a:hover {
-    background: rgba(0,0,0,0.05);
+    background: rgba(255,255,255,0.15);
 }
-</style>
-</head>
-
 <body>
 
 <!-- NAVBAR -->
