@@ -18,27 +18,22 @@ body {
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 12px 15px;
     position: relative;
     flex-wrap: wrap;
-
-    /* Deep white glass effect */
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* LEFT & RIGHT TEXT */
-.left,
+.left {
+    z-index: 2;
+}
+
 .right {
-    color: black;
+    margin-left: auto;
+    font-size: 16px;
     font-weight: 600;
 }
 
-/* HAMBURGER ICON */
+/* HAMBURGER */
 .menu-icon {
     width: 28px;
     cursor: pointer;
@@ -46,32 +41,30 @@ body {
 
 .menu-icon div {
     height: 3px;
-    background: black;
+    background: white;
     margin: 5px 0;
     border-radius: 2px;
     transition: 0.4s;
 }
 
-/* ANIMATION */
+/* ICON ANIMATION */
 .menu-icon.active .line1 {
     transform: rotate(45deg) translate(5px, 5px);
 }
-
 .menu-icon.active .line2 {
     opacity: 0;
 }
-
 .menu-icon.active .line3 {
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* MENU BOX */
+/* MENU */
 .menu {
     position: absolute;
-    top: 60px;
+    top: 55px;
     left: 10px;
     width: 200px;
-    background: white;
+    background-color: rgb(14, 24, 115);
     padding: 10px;
     border-radius: 10px;
 
@@ -79,17 +72,13 @@ body {
     transform-origin: top;
     transition: 0.3s ease;
     opacity: 0;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* SHOW MENU */
 .menu.show {
     transform: scaleY(1);
     opacity: 1;
 }
 
-/* MENU LIST */
 .menu ul {
     list-style: none;
 }
@@ -102,15 +91,15 @@ body {
     display: block;
     padding: 10px;
     font-size: 15px;
-    color: black;
+    color: white;
     text-decoration: none;
     border-radius: 6px;
-    transition: 0.3s;
 }
 
 .menu a:hover {
-    background: rgba(0,0,0,0.05);
+    background: rgba(255,255,255,0.1);
 }
+
 
 /* ================= HOME SECTION ================= */
 .home {
