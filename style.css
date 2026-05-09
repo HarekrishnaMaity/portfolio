@@ -111,7 +111,33 @@ body {
 .menu a:hover {
     background: rgba(0,0,0,0.05);
 }
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    position: relative;
+    flex-wrap: wrap;
 
+    /* FIX: solid + glass fallback for mobile */
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.98);
+
+    /* better mobile support */
+    width: 100%;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    z-index: 1000;
+}
+
+/* optional: better mobile blur support */
+@supports (backdrop-filter: blur(10px)) {
+    .navbar {
+        background-color: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
 /* ================= HOME SECTION ================= */
 .home {
     min-height: 100vh;
