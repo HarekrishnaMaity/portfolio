@@ -18,27 +18,22 @@ body {
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 12px 15px;
     position: relative;
     flex-wrap: wrap;
 }
 
-/* LEFT */
 .left {
     z-index: 2;
 }
 
-/* RIGHT */
 .right {
     margin-left: auto;
     font-size: 16px;
     font-weight: 600;
 }
 
-/* =========================
-   HAMBURGER ICON
-========================= */
+/* HAMBURGER */
 .menu-icon {
     width: 28px;
     cursor: pointer;
@@ -46,39 +41,29 @@ body {
 
 .menu-icon div {
     height: 3px;
-    background: white;   /* default white */
+    background: white;
     margin: 5px 0;
     border-radius: 2px;
     transition: 0.4s;
-}
-
-/* AFTER CLICK COLOR CHANGE */
-.menu-icon.active div {
-    background: rgb(14, 24, 115);
 }
 
 /* ICON ANIMATION */
 .menu-icon.active .line1 {
     transform: rotate(45deg) translate(5px, 5px);
 }
-
 .menu-icon.active .line2 {
     opacity: 0;
 }
-
 .menu-icon.active .line3 {
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* =========================
-   MENU BOX
-========================= */
+/* MENU */
 .menu {
     position: absolute;
     top: 55px;
     left: 10px;
     width: 200px;
-
     background-color: rgb(14, 24, 115);
     padding: 10px;
     border-radius: 10px;
@@ -87,193 +72,13 @@ body {
     transform-origin: top;
     transition: 0.3s ease;
     opacity: 0;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* SHOW MENU */
 .menu.show {
     transform: scaleY(1);
     opacity: 1;
 }
 
-/* MENU LIST */
-.menu ul {
-    list-style: none;
-}
-
-.menu li {
-    margin: 8px 0;
-}
-
-/* LINKS */
-.menu a {
-    display: block;
-    padding: 10px;
-    font-size: 15px;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: 0.3s;
-}
-
-.menu a:hover {
-    background: rgba(255,255,255,0.15);
-}
-<body>
-
-<!-- NAVBAR -->
-<div class="navbar">
-
-    <div class="left">My Portfolio</div>
-
-    <!-- HAMBURGER -->
-    <div class="menu-icon" onclick="toggleMenu(this)">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-    </div>
-
-    <div class="right">Menu</div>
-
-    <!-- MENU -->
-    <div class="menu">
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-
-</div>
-
-<script>
-function toggleMenu(icon) {
-    icon.classList.toggle("active");
-    document.querySelector(".menu").classList.toggle("show");
-}
-</script>
-
-</body>
-</html>
-⭐ What you get:
-
-✔ Deep white modern navbar
-✔ Glass blur effect
-✔ Smooth hamburger animation
-✔ Mobile dropdown menu
-✔ Clean portfolio look
-
-If you want next upgrade, I can make it:
-🔥 
-Sticky navbar on scroll
-🔥 
-Active section highlight
-🔥 
-Full portfolio homepage design
-🔥 
-Dark/light toggle switch
-
-Just tell 👍
-
-only css
-
-Here is your only CSS version with a deep white modern navbar (glass effect) + hamburger menu styling.
-
-✅ FULL CSS (Deep White Navbar + Menu)
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background-color: rgb(7, 4, 30);
-    font-family: Poppins, sans-serif;
-    color: white;
-}
-
-/* NAVBAR */
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 15px;
-    position: relative;
-    flex-wrap: wrap;
-
-    /* Deep white glass effect */
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* LEFT & RIGHT TEXT */
-.left,
-.right {
-    color: black;
-    font-weight: 600;
-}
-
-/* HAMBURGER ICON */
-.menu-icon {
-    width: 28px;
-    cursor: pointer;
-}
-
-.menu-icon div {
-    height: 3px;
-    background: black;
-    margin: 5px 0;
-    border-radius: 2px;
-    transition: 0.4s;
-}
-
-/* ANIMATION */
-.menu-icon.active .line1 {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.menu-icon.active .line2 {
-    opacity: 0;
-}
-
-.menu-icon.active .line3 {
-    transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* MENU BOX */
-.menu {
-    position: absolute;
-    top: 60px;
-    left: 10px;
-    width: 200px;
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: 0.3s ease;
-    opacity: 0;
-
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* SHOW MENU */
-.menu.show {
-    transform: scaleY(1);
-    opacity: 1;
-}
-
-/* MENU LIST */
 .menu ul {
     list-style: none;
 }
@@ -286,106 +91,14 @@ body {
     display: block;
     padding: 10px;
     font-size: 15px;
-    color: black;
+    color: white;
     text-decoration: none;
     border-radius: 6px;
-    transition: 0.3s;
 }
 
 .menu a:hover {
-    background: rgba(0,0,0,0.05);
+    background: rgba(255,255,255,0.1);
 }
-⭐ Result:
-
-✔ Deep white modern navbar
-✔ Glass blur effect
-✔ Clean black text
-✔ Smooth hamburger animation
-✔ Stylish dropdown menu
-
-If you want next upgrade, I can make:
-🔥 
-Sticky navbar
-🔥 
-Active link highlight
-🔥 
-Dark/light toggle
-🔥 
-Full portfolio UI upgrade
-
-Just tell 👍
-
-navbar color does not see in mobile
-
-This usually happens on mobile because the navbar background is transparent or not covering full width / height properly, or because the browser is not applying the blur effect correctly.
-
-Let’s fix it properly so it always shows deep white on mobile.
-
-✅ FIXED CSS (Mobile-safe Navbar Color)
-
-Replace your .navbar with this:
-
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 15px;
-    position: relative;
-    flex-wrap: wrap;
-
-    /* FIX: solid + glass fallback for mobile */
-    background-color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.98);
-
-    /* better mobile support */
-    width: 100%;
-
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    z-index: 1000;
-}
-
-/* optional: better mobile blur support */
-@supports (backdrop-filter: blur(10px)) {
-    .navbar {
-        background-color: rgba(255, 255, 255, 0.92);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
-}
-🔥 WHY YOUR ISSUE HAPPENED
-
-On mobile browsers:
-
-backdrop-filter sometimes fails ❌
-transparent background blends with body ❌
-navbar looks invisible ❌
-
-So we added:
-✔ solid white fallback (#fff)
-✔ stronger opacity (0.98)
-✔ mobile-safe support (@supports)
-✔ full width fix
-
-⭐ RESULT
-
-Now your navbar will:
-
-Always visible on mobile ✔
-Deep white background ✔
-Smooth glass effect on supported devices ✔
-No transparency bugs ✔
-
-If you want next upgrade, I can make your navbar:
-🔥 
-sticky on scroll
-🔥 
-auto-hide on scroll down
-🔥 
-active section highlight
-🔥 
-modern animated menu slide
-
-Just tell 👍
 
 /* ================= HOME SECTION ================= */
 .home {
