@@ -12,79 +12,32 @@ body {
     background-color: rgb(7, 4, 30);
     font-family: Poppins, sans-serif;
     color: white;
+    overflow-x: hidden;
 }
 
-/* =========================
-   NAVBAR (ALL DEVICES)
-========================= */
+/* ================= NAVBAR (DESKTOP DEFAULT) ================= */
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 15px;
-    position: relative;
-
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(8px);
 }
 
-/* LEFT */
+/* LEFT TITLE */
 .left {
     font-weight: 600;
 }
 
-/* RIGHT */
-.right {
-    font-size: 16px;
-    font-weight: 600;
-    margin-left: auto;
-}
-
-/* =========================
-   HAMBURGER (DEFAULT HIDDEN ON LAPTOP)
-========================= */
-.menu-icon {
-    width: 28px;
-    cursor: pointer;
-    display: none;
-}
-
-.menu-icon div {
-    height: 3px;
-    background: white;
-    margin: 5px 0;
-    border-radius: 2px;
-    transition: 0.4s;
-}
-
-/* ACTIVE COLOR CHANGE */
-.menu-icon.active div {
-    background: rgb(14, 24, 115);
-}
-
-/* ANIMATION */
-.menu-icon.active .line1 {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.menu-icon.active .line2 {
-    opacity: 0;
-}
-
-.menu-icon.active .line3 {
-    transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* =========================
-   MENU (DESKTOP VIEW)
-========================= */
+/* MENU (DESKTOP) */
 .menu {
     display: flex;
 }
 
 .menu ul {
-    list-style: none;
     display: flex;
+    list-style: none;
     gap: 20px;
 }
 
@@ -100,6 +53,26 @@ body {
     background: rgba(255,255,255,0.1);
 }
 
+/* RIGHT TEXT (desktop only) */
+.right {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* HAMBURGER HIDDEN ON LAPTOP */
+.menu-icon {
+    display: none;
+    width: 28px;
+    cursor: pointer;
+}
+
+.menu-icon div {
+    height: 3px;
+    background: white;
+    margin: 5px 0;
+    border-radius: 2px;
+    transition: 0.4s ease;
+}
 /* =========================
    MOBILE VIEW
 ========================= */
@@ -132,6 +105,49 @@ body {
     }
 
     /* OPEN MENU */
+    .menu.show {
+        left: 0;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        gap: 0;
+        padding-left: 20px;
+    }
+
+    .menu a {
+        display: block;
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+@media (max-width: 768px) {
+
+    /* show hamburger */
+    .menu-icon {
+        display: block;
+    }
+
+    /* hide right text */
+    .right {
+        display: none;
+    }
+
+    /* side menu */
+    .menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: min(280px, 80%);
+        height: 100vh;
+        background: rgb(14, 24, 115);
+        padding-top: 80px;
+        flex-direction: column;
+        transition: 0.4s ease;
+        box-shadow: 5px 0 20px rgba(0,0,0,0.4);
+    }
+
+    /* open menu */
     .menu.show {
         left: 0;
     }
