@@ -1,5 +1,9 @@
 function toggleMenu() {
-    document.querySelector(".menu").classList.toggle("show");
+
+    // MENU
+    document.getElementById("menu").classList.toggle("show");
+
+    // HAMBURGER ANIMATION
     document.querySelector(".menu-icon").classList.toggle("active");
 }
 /* EMAILJS CONTACT FORM */
