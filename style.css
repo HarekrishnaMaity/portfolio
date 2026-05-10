@@ -125,23 +125,29 @@ body {
 ========================= */
 @media (max-width: 768px) {
 
+    /* show hamburger */
     .menu-icon {
         display: block;
     }
 
-    /* SIDE MENU */
+    /* hide desktop menu */
     .menu {
         position: fixed;
         top: 0;
         left: -100%;
         width: 70%;
         height: 100vh;
+
         background: rgb(14, 24, 115);
+        flex-direction: column;
+
         padding-top: 80px;
         transition: 0.4s ease;
+
         box-shadow: 5px 0 20px rgba(0,0,0,0.4);
     }
 
+    /* open menu */
     .menu.show {
         left: 0;
     }
@@ -153,11 +159,17 @@ body {
     }
 
     .menu a {
-        font-size: 18px;
         display: block;
-        padding: 15px;
+        font-size: 16px;
+        padding: 12px;
+        color: white;
     }
 
+    .menu a:hover {
+        background: rgba(255,255,255,0.15);
+    }
+
+    /* hide right text on mobile */
     .right {
         display: none;
     }
