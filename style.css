@@ -1,4 +1,5 @@
 /* ================= RESET ================= */
+
 *{
     margin:0;
     padding:0;
@@ -11,7 +12,7 @@ html{
 
 body{
     font-family:Poppins,sans-serif;
-    background:rgb(7,4,30);
+    background:#07041e;
     color:white;
     overflow-x:hidden;
 }
@@ -25,16 +26,20 @@ body{
     padding:15px 20px;
     background:rgba(255,255,255,0.05);
     backdrop-filter:blur(8px);
-    position:relative;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
 /* LEFT */
+
 .left{
     display:flex;
     align-items:center;
 }
 
-/* RIGHT LOGO */
+/* RIGHT */
+
 .right{
     font-size:18px;
     font-weight:600;
@@ -78,7 +83,7 @@ body{
     transition:0.4s;
 }
 
-/* HAMBURGER ANIMATION */
+/* ANIMATION */
 
 .menu-icon.active .line1{
     transform:rotate(45deg) translate(5px,5px);
@@ -97,19 +102,22 @@ body{
 @media(max-width:768px){
 
     /* SHOW HAMBURGER */
+
     .menu-icon{
         display:block;
     }
 
     /* MOBILE MENU */
+
     .menu{
         position:fixed;
         top:0;
         left:-100%;
-        width:260px;
+
+        width:250px;
         height:100vh;
 
-        background:rgb(14,24,115);
+        background:#0e1873;
 
         padding-top:80px;
 
@@ -119,11 +127,13 @@ body{
     }
 
     /* OPEN MENU */
+
     .menu.show{
         left:0;
     }
 
     /* MENU ITEMS */
+
     .menu ul{
         flex-direction:column;
         gap:0;
@@ -137,14 +147,15 @@ body{
         display:block;
         width:100%;
         padding:15px 20px;
-        font-size:16px;
     }
 
-    /* SMALLER TEXT */
+    /* SMALL LOGO */
+
     .right{
-        font-size:16px;
+        font-size:15px;
     }
 }
+
 /* ================= HOME SECTION ================= */
 .home {
     min-height: 100vh;
