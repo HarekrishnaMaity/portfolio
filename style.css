@@ -1,155 +1,148 @@
-/* =========================
-   GLOBAL RESET
-========================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    background-color: rgb(7, 4, 30);
-    font-family: Poppins, sans-serif;
-    color: white;
-    overflow-x: hidden;
+body{
+    font-family:Poppins,sans-serif;
+    background:rgb(7,4,30);
+    color:white;
+    overflow-x:hidden;
 }
 
-/* =========================
-   NAVBAR (DESKTOP BASE)
-========================= */
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 20px;
+/* ================= NAVBAR ================= */
 
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(8px);
-    position: relative;
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(8px);
+    position:relative;
 }
 
-/* LEFT SIDE (HAMBURGER + LOGO) */
-.left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+/* LEFT */
+.left{
+    display:flex;
+    align-items:center;
 }
 
-/* LOGO TEXT */
-.logo {
-    font-weight: 600;
-    font-size: 18px;
+/* RIGHT LOGO */
+.right{
+    font-size:18px;
+    font-weight:600;
 }
 
-/* =========================
-   MENU (DESKTOP)
-========================= */
-.menu {
-    display: flex;
+/* ================= MENU DESKTOP ================= */
+
+.menu ul{
+    display:flex;
+    list-style:none;
+    gap:20px;
 }
 
-.menu ul {
-    display: flex;
-    list-style: none;
-    gap: 20px;
+.menu ul li a{
+    text-decoration:none;
+    color:white;
+    padding:8px 12px;
+    border-radius:6px;
+    transition:0.3s;
 }
 
-.menu a {
-    text-decoration: none;
-    color: white;
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: 0.3s;
+.menu ul li a:hover{
+    background:rgba(255,255,255,0.1);
 }
 
-.menu a:hover {
-    background: rgba(255,255,255,0.1);
+/* ================= HAMBURGER ================= */
+
+.menu-icon{
+    display:none;
+    cursor:pointer;
+    margin-right:15px;
+    z-index:1100;
 }
 
-/* =========================
-   HAMBURGER (HIDDEN ON DESKTOP)
-========================= */
-.menu-icon {
-    display: none;
-    width: 28px;
-    cursor: pointer;
+.menu-icon div{
+    width:25px;
+    height:3px;
+    background:white;
+    margin:5px;
+    border-radius:2px;
+    transition:0.4s;
 }
 
-.menu-icon div {
-    height: 3px;
-    background: white;
-    margin: 5px 0;
-    border-radius: 2px;
-    transition: 0.4s ease;
+/* HAMBURGER ANIMATION */
+
+.menu-icon.active .line1{
+    transform:rotate(45deg) translate(5px,5px);
 }
 
-/* ANIMATION ACTIVE */
-.menu-icon.active .line1 {
-    transform: rotate(45deg) translate(5px, 5px);
+.menu-icon.active .line2{
+    opacity:0;
 }
 
-.menu-icon.active .line2 {
-    opacity: 0;
+.menu-icon.active .line3{
+    transform:rotate(-45deg) translate(6px,-6px);
 }
 
-.menu-icon.active .line3 {
-    transform: rotate(-45deg) translate(6px, -6px);
-}
+/* ================= MOBILE ================= */
 
-/* =========================
-   MOBILE VIEW
-========================= */
-@media (max-width: 768px) {
+@media(max-width:768px){
 
     /* SHOW HAMBURGER */
-    .menu-icon {
-        display: block;
+    .menu-icon{
+        display:block;
     }
 
-    /* LOGO SIZE ADJUST */
-    .logo {
-        font-size: 16px;
-    }
+    /* MOBILE MENU */
+    .menu{
+        position:fixed;
+        top:0;
+        left:-100%;
+        width:260px;
+        height:100vh;
 
-    /* ================= SIDE MENU ================= */
-    .menu {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 260px;
-        height: 100vh;
+        background:rgb(14,24,115);
 
-        background: rgb(14, 24, 115);
-        padding-top: 80px;
+        padding-top:80px;
 
-        flex-direction: column;
-        transition: left 0.4s ease;
-        z-index: 1000;
+        transition:0.4s ease;
+
+        z-index:1000;
     }
 
     /* OPEN MENU */
-    .menu.show {
-        left: 0;
+    .menu.show{
+        left:0;
     }
 
-    .menu ul {
-        flex-direction: column;
-        gap: 0;
+    /* MENU ITEMS */
+    .menu ul{
+        flex-direction:column;
+        gap:0;
     }
 
-    .menu li {
-        width: 100%;
+    .menu ul li{
+        width:100%;
     }
 
-    .menu a {
-        display: block;
-        width: 100%;
-        padding: 15px 20px;
-        font-size: 16px;
+    .menu ul li a{
+        display:block;
+        width:100%;
+        padding:15px 20px;
+        font-size:16px;
+    }
+
+    /* SMALLER TEXT */
+    .right{
+        font-size:16px;
     }
 }
 /* ================= HOME SECTION ================= */
