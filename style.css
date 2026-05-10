@@ -73,9 +73,6 @@ body {
     border-radius: 2px;
     transition: 0.4s ease;
 }
-/* =========================
-   MOBILE VIEW
-========================= */
 @media (max-width: 768px) {
 
     /* SHOW HAMBURGER */
@@ -88,80 +85,50 @@ body {
         display: none;
     }
 
-    /* SIDE MENU */
+    /* ================= SIDE MENU ================= */
     .menu {
         position: fixed;
         top: 0;
         left: -100%;
-        width: 70%;
+        width: 260px;
         height: 100vh;
 
         background: rgb(14, 24, 115);
         padding-top: 80px;
 
+        display: flex;
         flex-direction: column;
-        transition: 0.4s ease;
-        box-shadow: 5px 0 20px rgba(0,0,0,0.4);
+
+        transition: left 0.4s ease;
+        z-index: 1000;
     }
 
-    /* OPEN MENU */
+    /* OPEN STATE */
     .menu.show {
         left: 0;
     }
 
+    /* MENU LIST */
     .menu ul {
         flex-direction: column;
         gap: 0;
-        padding-left: 20px;
+        padding: 0;
+    }
+
+    .menu li {
+        width: 100%;
     }
 
     .menu a {
         display: block;
-        padding: 14px;
+        width: 100%;
+        padding: 15px 20px;
         font-size: 16px;
     }
-}
-@media (max-width: 768px) {
 
-    /* show hamburger */
-    .menu-icon {
-        display: block;
-    }
-
-    /* hide right text */
-    .right {
-        display: none;
-    }
-
-    /* side menu */
-    .menu {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: min(280px, 80%);
-        height: 100vh;
-        background: rgb(14, 24, 115);
-        padding-top: 80px;
-        flex-direction: column;
-        transition: 0.4s ease;
-        box-shadow: 5px 0 20px rgba(0,0,0,0.4);
-    }
-
-    /* open menu */
-    .menu.show {
-        left: 0;
-    }
-
-    .menu ul {
-        flex-direction: column;
-        gap: 0;
-        padding-left: 20px;
-    }
-
-    .menu a {
-        display: block;
-        padding: 14px;
-        font-size: 16px;
+    /* OPTIONAL: DARK BACKDROP FEEL */
+    body.menu-open {
+        overflow: hidden;
     }
 }
 /* ================= HOME SECTION ================= */
