@@ -99,44 +99,47 @@ body{
 
 /* ================= MOBILE ================= */
 
+/* ================= STYLISH MOBILE MENU ================= */
+
 @media(max-width:768px){
-
-    /* SHOW HAMBURGER */
-
-    .menu-icon{
-        display:block;
-    }
-
-    /* MOBILE MENU */
 
     .menu{
         position:fixed;
-        top:0;
+        top:15px;
         left:-100%;
 
-        width:200px;
-        height:100vh;
+        width:180px;
+        height:auto;
 
-        background:#0e1873;
+        background:rgba(14,24,115,0.95);
 
-        padding-top:80px;
+        backdrop-filter:blur(12px);
+
+        border-radius:18px;
+
+        padding:20px 0;
 
         transition:0.4s ease;
 
         z-index:1000;
+
+        box-shadow:0 8px 25px rgba(0,0,0,0.4);
     }
 
     /* OPEN MENU */
 
     .menu.show{
-        left:0;
+        left:15px;
     }
 
     /* MENU ITEMS */
 
     .menu ul{
+        display:flex;
         flex-direction:column;
-        gap:0;
+        gap:5px;
+
+        width:100%;
     }
 
     .menu ul li{
@@ -145,17 +148,56 @@ body{
 
     .menu ul li a{
         display:block;
-        width:100%;
-        padding:15px 20px;
+
+        padding:12px 20px;
+
+        color:white;
+
+        font-size:15px;
+
+        border-radius:10px;
+
+        transition:0.3s;
+    }
+
+    /* HOVER EFFECT */
+
+    .menu ul li a:hover{
+        background:rgba(255,255,255,0.12);
+
+        transform:translateX(5px);
     }
 
     /* SMALL LOGO */
 
     .right{
-        font-size:15px;
+        font-size:14px;
+    }
+
+    /* HAMBURGER */
+
+    .menu-icon{
+        display:block;
+    }
+
+    .menu-icon div{
+        transition:0.4s;
+    }
+
+    /* HAMBURGER ANIMATION */
+
+    .menu-icon.active .line1{
+        transform:rotate(45deg) translate(5px,5px);
+    }
+
+    .menu-icon.active .line2{
+        opacity:0;
+    }
+
+    .menu-icon.active .line3{
+        transform:rotate(-45deg) translate(6px,-6px);
     }
 }
-
 /* ================= HOME SECTION ================= */
 .home {
     min-height: 100vh;
