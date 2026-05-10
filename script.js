@@ -1,4 +1,6 @@
-function toggleMenu() {
+/* MOBILE NAVBAR */
+
+function toggleMenu(){
 
     // MENU
     document.getElementById("menu").classList.toggle("show");
@@ -6,6 +8,20 @@ function toggleMenu() {
     // HAMBURGER ANIMATION
     document.querySelector(".menu-icon").classList.toggle("active");
 }
+
+/* AUTO CLOSE MENU */
+
+document.querySelectorAll(".menu a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        document.getElementById("menu").classList.remove("show");
+
+        document.querySelector(".menu-icon").classList.remove("active");
+
+    });
+
+});
 /* EMAILJS CONTACT FORM */
 
 document.addEventListener("DOMContentLoaded", function () {
