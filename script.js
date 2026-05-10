@@ -1,12 +1,7 @@
-function toggleMenu(icon) {
-
-    let menu = document.getElementById("menu");
-
-    menu.classList.toggle("show");
-    icon.classList.toggle("active");
+function toggleMenu() {
+    document.querySelector(".menu").classList.toggle("show");
+    document.querySelector(".menu-icon").classList.toggle("active");
 }
-
-
 /* EMAILJS CONTACT FORM */
 
 document.addEventListener("DOMContentLoaded", function () {
