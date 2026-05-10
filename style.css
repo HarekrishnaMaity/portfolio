@@ -120,17 +120,44 @@ body {
 .menu a:hover {
     background: rgba(255,255,255,0.15);
 }
-/* =========================
-   MOBILE VIEW
-========================= */
 @media (max-width: 768px) {
 
-    /* show hamburger */
+    /* SHOW HAMBURGER */
     .menu-icon {
         display: block;
+        width: 28px;
+        cursor: pointer;
+        z-index: 2000;
     }
 
-    /* hide desktop menu */
+    .menu-icon div {
+        height: 3px;
+        background: white;
+        margin: 5px 0;
+        border-radius: 2px;
+        transition: 0.4s;
+    }
+
+    /* ACTIVE HAMBURGER COLOR */
+    .menu-icon.active div {
+        background: rgb(14, 24, 115);
+    }
+
+    .menu-icon.active .line1 {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-icon.active .line2 {
+        opacity: 0;
+    }
+
+    .menu-icon.active .line3 {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* =========================
+       MOBILE SIDE MENU
+    ========================= */
     .menu {
         position: fixed;
         top: 0;
@@ -139,20 +166,20 @@ body {
         height: 100vh;
 
         background: rgb(14, 24, 115);
-        flex-direction: column;
-
         padding-top: 80px;
-        transition: 0.4s ease;
 
+        transition: 0.4s ease;
         box-shadow: 5px 0 20px rgba(0,0,0,0.4);
     }
 
-    /* open menu */
+    /* OPEN MENU */
     .menu.show {
         left: 0;
     }
 
+    /* MENU ITEMS */
     .menu ul {
+        display: flex;
         flex-direction: column;
         gap: 0;
         padding-left: 20px;
@@ -160,16 +187,19 @@ body {
 
     .menu a {
         display: block;
+        padding: 14px;
         font-size: 16px;
-        padding: 12px;
         color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: 0.3s;
     }
 
     .menu a:hover {
         background: rgba(255,255,255,0.15);
     }
 
-    /* hide right text on mobile */
+    /* HIDE EXTRA TEXT ON MOBILE */
     .right {
         display: none;
     }
