@@ -97,105 +97,87 @@ body{
     transform:rotate(-45deg) translate(6px,-6px);
 }
 
-/* ================= MOBILE ================= */
-
-/* ================= STYLISH MOBILE MENU ================= */
+/* ================= MOBILE STYLISH POPUP MENU ================= */
 
 @media(max-width:768px){
 
-    .menu{
-        position:fixed;
-        top:15px;
-        left:-100%;
+    /* HAMBURGER */
+    .menu-icon{
+        display:block;
+        z-index:1100;
+    }
 
-        width:180px;
-        height:auto;
+    /* SMALL POPUP MENU */
+    .menu{
+        position:absolute;
+
+        top:60px;
+        left:10px;
+
+        width:170px;
 
         background:rgba(14,24,115,0.95);
 
         backdrop-filter:blur(12px);
 
-        border-radius:18px;
+        border-radius:16px;
 
-        padding:20px 0;
-
-        transition:0.4s ease;
-
-        z-index:1000;
+        padding:12px;
 
         box-shadow:0 8px 25px rgba(0,0,0,0.4);
+
+        opacity:0;
+        visibility:hidden;
+
+        transform:translateY(-10px);
+
+        transition:0.3s ease;
+
+        z-index:1000;
     }
 
     /* OPEN MENU */
-
     .menu.show{
-        left:15px;
+        opacity:1;
+        visibility:visible;
+        transform:translateY(0);
     }
 
     /* MENU ITEMS */
-
     .menu ul{
         display:flex;
         flex-direction:column;
         gap:5px;
 
-        width:100%;
-    }
-
-    .menu ul li{
-        width:100%;
+        list-style:none;
     }
 
     .menu ul li a{
         display:block;
 
-        padding:12px 20px;
+        text-decoration:none;
 
         color:white;
 
-        font-size:15px;
+        padding:10px 14px;
 
         border-radius:10px;
+
+        font-size:14px;
 
         transition:0.3s;
     }
 
-    /* HOVER EFFECT */
-
+    /* HOVER */
     .menu ul li a:hover{
-        background:rgba(255,255,255,0.12);
+        background:rgba(255,255,255,0.1);
 
-        transform:translateX(5px);
+        transform:translateX(4px);
     }
 
-    /* SMALL LOGO */
-
+    /* SMALL TITLE */
     .right{
         font-size:14px;
-    }
-
-    /* HAMBURGER */
-
-    .menu-icon{
-        display:block;
-    }
-
-    .menu-icon div{
-        transition:0.4s;
-    }
-
-    /* HAMBURGER ANIMATION */
-
-    .menu-icon.active .line1{
-        transform:rotate(45deg) translate(5px,5px);
-    }
-
-    .menu-icon.active .line2{
-        opacity:0;
-    }
-
-    .menu-icon.active .line3{
-        transform:rotate(-45deg) translate(6px,-6px);
     }
 }
 /* ================= HOME SECTION ================= */
