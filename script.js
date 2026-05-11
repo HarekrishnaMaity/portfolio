@@ -1,27 +1,28 @@
-/* MOBILE NAVBAR */
+fuction toggleMenu(icon) {n
 
-function toggleMenu(){
+    let menu = document.getElementById("menu");
 
-    // MENU
-    document.getElementById("menu").classList.toggle("show");
-
-    // HAMBURGER ANIMATION
-    document.querySelector(".menu-icon").classList.toggle("active");
+    menu.classList.toggle("show");
+    icon.classList.toggle("active");
 }
 
-/* AUTO CLOSE MENU */
+function toggleLinks(){
 
-document.querySelectorAll(".menu a").forEach(link => {
+    const links = document.getElementById("projectLinks");
 
-    link.addEventListener("click", () => {
+    if(links.style.display === "flex"){
 
-        document.getElementById("menu").classList.remove("show");
+        links.style.display = "none";
 
-        document.querySelector(".menu-icon").classList.remove("active");
+    }
+    else{
 
-    });
+        links.style.display = "flex";
 
-});
+    }
+
+}
+
 /* EMAILJS CONTACT FORM */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -53,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-});
+}); // ← Missing closing line added here
 
 
 /* CHANGING TEXT ANIMATION */
@@ -72,9 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentText = "";
     let letter = "";
 
-    function type(){
+    function type() {
 
-        if(count === texts.length){
+        if (count === texts.length) {
             count = 0;
         }
 
@@ -83,47 +84,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.querySelector(".changing-text").textContent = letter;
 
-        if(letter.length === currentText.length){
+        if (letter.length === currentText.length) {
 
-            setTimeout(erase,1500);
+            setTimeout(erase, 1500);
             return;
         }
 
-        setTimeout(type,100);
+        setTimeout(type, 100);
     }
 
-    function erase(){
+    function erase() {
 
-        letter = currentText.slice(0,--index);
+        letter = currentText.slice(0, --index);
 
         document.querySelector(".changing-text").textContent = letter;
 
-        if(letter.length === 0){
+        if (letter.length === 0) {
 
             count++;
-            setTimeout(type,200);
+            setTimeout(type, 200);
             return;
         }
 
-        setTimeout(erase,50);
+        setTimeout(erase, 50);
     }
 
     type();
-
-});
-function toggleLinks(){
-
-    const links = document.getElementById("projectLinks");
-
-    if(links.style.display === "flex"){
-
-        links.style.display = "none";
-
-    }
-    else{
-
-        links.style.display = "flex";
-
-    }
 
 });
