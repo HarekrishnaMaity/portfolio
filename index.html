@@ -1,92 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Harekrishna - Portfolio</title>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- JavaScript -->
     <script src="script.js" defer></script>
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
+
 </head>
+
 <body>
 
 <!-- NAVBAR -->
+
 <header>
+
     <nav class="navbar">
 
         <!-- LEFT -->
+
         <div class="left">
-            <div class="menu-icon" onclick="toggleMenu()">
+
+            <div class="menu-icon" onclick="toggleMenu(this)">
+
                 <div class="line1"></div>
                 <div class="line2"></div>
                 <div class="line3"></div>
+
             </div>
 
             <!-- MENU -->
+
             <div id="menu" class="menu">
+
                 <ul>
+
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
-                   <li><a href="#projects">Projects</a></li>
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#education">Education</a></li>
                     <li><a href="#contact">Contact Me</a></li>
+
                 </ul>
+
             </div>
+
         </div>
 
         <!-- RIGHT -->
-        <div class="right">Harekrishna's Portfolio</div>
+
+        <div class="right">
+
+            Harekrishna's Portfolio
+
+        </div>
 
     </nav>
+
 </header>
 
 <!-- HOME SECTION -->
+
 <section id="home" class="home">
+
     <div class="home-container">
 
-        <img src="hari.png.jpeg"
-             class="profile">
+        <img src="https://github.com/HarekrishnaMaity/portfolio/blob/main/hari.png.jpeg?raw=true"
+        class="profile">
 
-       <h2 class="name">Hi, My name is Harekrishna Maity</h2>
+        <h2 class="name">Hi, My name is Harekrishna Maity</h2>
 
-<h2>I am a <span class="changing-text"></span></h2>
+        <h2>I am a <span class="changing-text"></span></h2>
+
         <p>
             I'm a BSc Computer Science student passionate about building
             responsive, user-friendly websites using modern technologies.
         </p>
 
     </div>
+
 </section>
+
+<!-- BUTTONS -->
+
 <div class="button-container">
 
     <button class="profile-btn"
     onclick="window.open('https://github.com/HarekrishnaMaity/github-demo.git','_blank')">
+
         GitHub
+
     </button>
 
     <button class="profile-btn"
     onclick="window.open('resume.pdf')">
-        Download Resume(coming soon)
+
+        Download Resume (Coming Soon)
+
     </button>
 
 </div>
 
 <!-- ABOUT SECTION -->
+
 <section id="about" class="about">
+
     <div class="about-container">
 
-        <img src="hari2.png.jpeg"
-             class="about-img">
+        <img src="https://github.com/HarekrishnaMaity/portfolio/blob/main/hari.png.jpeg?raw=true"
+        class="about-img">
 
         <div class="about-text">
+
             <h1>About Me</h1>
 
             <p>
@@ -98,11 +138,16 @@
                 Currently, I am learning new technologies and improving my skills
                 to become a professional developer.
             </p>
+
         </div>
 
     </div>
+
 </section>
 
+</body>
+
+</html>
 <!-- PROJECT SECTION -->
 <section id="projects" class="projects-section">
 
@@ -113,7 +158,7 @@
         <!-- PROJECT CARD -->
         <div class="project-card">
 
-            <img src="ibm.jpeg" alt="Groundnut Leaf Disease Classification">
+            <img src="project-image.jpg" alt="Groundnut Leaf Disease Classification">
 
             <div class="project-content">
 
@@ -143,16 +188,16 @@
 
                 <div class="project-links" id="projectLinks">
 
-                    <a href="Hari.powerpoint.pptx" target="_blank">
+                    <a href="ppt-link.html" target="_blank">
                         PPT Presentation
                     </a>
 
-                    <a href="Concept Note.pdf" target="_blank">
+                    <a href="project.pdf" target="_blank">
                         Project PDF
                     </a>
 
-                    <a href="Lean Canvas.pdf" target="_blank">
-                        Lean Canvas
+                    <a href="https://your-live-demo-link.com" target="_blank">
+                        Live Demo
                     </a>
 
                 </div>
@@ -313,7 +358,7 @@
 
         <div class="education-card">
 
-            <img src="mcc.png.jpg"
+            <img src="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\mcc.png.jpg"
                  alt="College"
                  class="education-img">
 
@@ -334,7 +379,7 @@
 
         <div class="education-card">
 
-            <img src="mmc.png.jpeg"
+            <img src="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\mmc2.png.webp"
                  alt="School"
                  class="education-img">
 
@@ -354,7 +399,7 @@
 
         <div class="education-card">
 
-            <img src="mmc2.png.webp"
+            <img src="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\mmc.png.jpeg"
                  alt="Secondary School"
                  class="education-img">
 
@@ -385,7 +430,7 @@
 
             <!-- Certificate Image -->
             <div class="certificate-img-box">
-                <img src="certificate.png.jpg" alt="Certificate">
+                <img src="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\certificate.png.jpg" alt="Certificate">
             </div>
 
             <!-- Certificate Title -->
@@ -413,13 +458,19 @@
             </div>
 
             <!-- Button -->
-            <a href="certificate.png.jpg" target="_blank" class="certificate-btn">
+            <a href="C:\Users\HARI\OneDrive\Videos\Attachments\Documents\Desktop\protfolio\certificate.png.jpg" target="_blank" class="certificate-btn">
                 View Certificate
             </a>
 
         </div>
 
     </div>
+
+</section>
+
+    </div>
+
+</section>
 
 </section>
 <!-- CONTACT SECTION -->
@@ -515,4 +566,3 @@
 </footer>
 </body>
 </html>
-
