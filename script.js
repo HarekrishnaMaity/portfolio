@@ -1,4 +1,4 @@
-fuction toggleMenu(icon) {n
+function toggleMenu(icon) {n
 
     let menu = document.getElementById("menu");
 
