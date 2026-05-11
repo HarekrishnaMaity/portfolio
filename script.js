@@ -1,23 +1,36 @@
+/* ================= EMAILJS INIT ================= */
+
+(function () {
+
+    emailjs.init("9QrxFWV8Q1pfl-yZK");
+
+})();
+
+
+/* ================= MOBILE MENU ================= */
+
 function toggleMenu(icon) {
 
-    let menu = document.getElementById("menu");
+    const menu = document.getElementById("menu");
 
     menu.classList.toggle("show");
+
     icon.classList.toggle("active");
+
 }
 
-/* PROJECT LINKS */
 
-function toggleLinks(){
+/* ================= PROJECT LINKS ================= */
+
+function toggleLinks() {
 
     const links = document.getElementById("projectLinks");
 
-    if(links.style.display === "flex"){
+    if (links.style.display === "flex") {
 
         links.style.display = "none";
 
-    }
-    else{
+    } else {
 
         links.style.display = "flex";
 
@@ -25,41 +38,69 @@ function toggleLinks(){
 
 }
 
-/* EMAILJS CONTACT FORM */
+
+/* ================= EMAILJS CONTACT FORM ================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.getElementById("contact-form");
 
-    form.addEventListener("submit", function (e) {
+    if (form) {
 
-        e.preventDefault();
+        form.addEventListener("submit", function (e) {
 
-        emailjs.sendForm(
-            "service_7v8ttbm",
-            "template_5e8w01g",
-            this
-        )
-        .then(() => {
+            e.preventDefault();
 
-            alert("Message sent successfully to Gmail ✅");
+            /* GET EMAIL */
 
-            form.reset();
+            const email =
+            form.querySelector('input[type="email"]').value;
 
-        })
-        .catch((error) => {
+            /* EMAIL VALIDATION */
 
-            console.log(error);
+            const emailPattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            alert("Message failed ❌ Check EmailJS setup");
+            if (!emailPattern.test(email)) {
+
+                alert("Wrong Email ❌ Please enter a valid email");
+
+                return;
+
+            }
+
+            /* SEND EMAIL */
+
+            emailjs.sendForm(
+                "service_7v8ttbm",
+                "template_5e8w01g",
+                this
+            )
+
+            .then(() => {
+
+                alert("Message sent successfully ✅");
+
+                form.reset();
+
+            })
+
+            .catch((error) => {
+
+                console.log(error);
+
+                alert("Message failed ❌ Check EmailJS setup");
+
+            });
 
         });
 
-    });
+    }
 
 });
 
-/* CHANGING TEXT ANIMATION */
+
+/* ================= CHANGING TEXT ANIMATION ================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -71,8 +112,11 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     let count = 0;
+
     let index = 0;
+
     let currentText = "";
+
     let letter = "";
 
     function type() {
