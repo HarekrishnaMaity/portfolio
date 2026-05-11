@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
-export default function Portfolio() {
+const App = () => {
 
     /* ================= STATES ================= */
 
     const [menuOpen, setMenuOpen] = useState(false);
 
-    const [linksOpen, setLinksOpen] = useState(false);
+    const [showProjects, setShowProjects] = useState(false);
 
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         message: ""
     });
+
+    /* ================= TYPING EFFECT ================= */
 
     const texts = [
         "Web Developer",
@@ -24,11 +26,12 @@ export default function Portfolio() {
 
     const [textIndex, setTextIndex] = useState(0);
 
+    const [charIndex, setCharIndex] = useState(0);
+
     const [displayText, setDisplayText] = useState("");
 
     const [isDeleting, setIsDeleting] = useState(false);
 
-    const [charIndex, setCharIndex] = useState(0);
 
     /* ================= EMAILJS INIT ================= */
 
@@ -38,19 +41,20 @@ export default function Portfolio() {
 
     }, []);
 
-    /* ================= TYPING EFFECT ================= */
+
+    /* ================= TEXT ANIMATION ================= */
 
     useEffect(() => {
 
         const currentText = texts[textIndex];
 
-        let timeout;
+        let timer;
 
         if (!isDeleting) {
 
-            setDisplayText(currentText.slice(0, charIndex + 1));
+            setDisplayText(currentText.substring(0, charIndex + 1));
 
-            timeout = setTimeout(() => {
+            timer = setTimeout(() => {
 
                 setCharIndex(charIndex + 1);
 
@@ -58,7 +62,7 @@ export default function Portfolio() {
 
             if (charIndex === currentText.length) {
 
-                timeout = setTimeout(() => {
+                timer = setTimeout(() => {
 
                     setIsDeleting(true);
 
@@ -67,9 +71,9 @@ export default function Portfolio() {
 
         } else {
 
-            setDisplayText(currentText.slice(0, charIndex - 1));
+            setDisplayText(currentText.substring(0, charIndex - 1));
 
-            timeout = setTimeout(() => {
+            timer = setTimeout(() => {
 
                 setCharIndex(charIndex - 1);
 
@@ -79,13 +83,14 @@ export default function Portfolio() {
 
                 setIsDeleting(false);
 
-                setTextIndex((textIndex + 1) % texts.length);
+                setTextIndex((prev) => (prev + 1) % texts.length);
             }
         }
 
-        return () => clearTimeout(timeout);
+        return () => clearTimeout(timer);
 
     }, [charIndex, isDeleting, textIndex]);
+
 
     /* ================= HANDLE INPUT ================= */
 
@@ -97,18 +102,19 @@ export default function Portfolio() {
         });
     };
 
-    /* ================= HANDLE SUBMIT ================= */
+
+    /* ================= HANDLE FORM ================= */
 
     const handleSubmit = (e) => {
 
         e.preventDefault();
 
         const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailPattern.test(formData.email)) {
 
-            alert("Wrong Email ❌ Please enter a valid email");
+            alert("❌ Wrong Email! Please enter a valid email.");
 
             return;
         }
@@ -121,24 +127,25 @@ export default function Portfolio() {
 
         .then(() => {
 
-            alert("Message sent successfully ✅");
+            alert("✅ Message Sent Successfully!");
 
             setFormData({
                 name: "",
                 email: "",
                 message: ""
             });
-
         })
 
         .catch((error) => {
 
             console.log(error);
 
-            alert("Message failed ❌ Check EmailJS setup");
-
+            alert("❌ Failed to send message.");
         });
     };
+
+
+    /* ================= JSX ================= */
 
     return (
 
@@ -146,26 +153,25 @@ export default function Portfolio() {
 
             {/* ================= NAVBAR ================= */}
 
-            <nav className="navbar">
+            <button
+                className={`menu-btn ${menuOpen ? "active" : ""}`}
+                onClick={() => setMenuOpen(!menuOpen)}
+            >
+                ☰
+            </button>
 
-                <div
-                    className={`menu-icon ${menuOpen ? "active" : ""}`}
-                    onClick={() => setMenuOpen(!menuOpen)}
-                >
-                    ☰
-                </div>
+            <nav className={`menu ${menuOpen ? "show" : ""}`}>
 
-                <ul className={`menu ${menuOpen ? "show" : ""}`}>
+                <a href="#home">Home</a>
 
-                    <li><a href="#home">Home</a></li>
+                <a href="#about">About</a>
 
-                    <li><a href="#projects">Projects</a></li>
+                <a href="#projects">Projects</a>
 
-                    <li><a href="#contact">Contact</a></li>
-
-                </ul>
+                <a href="#contact">Contact</a>
 
             </nav>
+
 
             {/* ================= HERO ================= */}
 
@@ -179,35 +185,40 @@ export default function Portfolio() {
 
             </section>
 
+
             {/* ================= PROJECT SECTION ================= */}
 
             <section id="projects">
 
-                <h2>My Projects</h2>
-
                 <button
-                    onClick={() => setLinksOpen(!linksOpen)}
+                    onClick={() => setShowProjects(!showProjects)}
                 >
                     View Project
                 </button>
 
-                {linksOpen && (
+                {showProjects && (
 
-                    <div className="project-links">
+                    <div
+                        className="project-links"
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "10px",
+                            marginTop: "10px"
+                        }}
+                    >
+                        <a href="#">📄 PDF</a>
 
-                        <a href="#">PPT</a>
+                        <a href="#">📊 PPT</a>
 
-                        <a href="#">PDF</a>
-
-                        <a href="#">Canvas</a>
-
+                        <a href="#">🎨 Canva</a>
                     </div>
-
                 )}
 
             </section>
 
-            {/* ================= CONTACT FORM ================= */}
+
+            {/* ================= CONTACT ================= */}
 
             <section id="contact">
 
@@ -237,7 +248,7 @@ export default function Portfolio() {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                    />
+                    ></textarea>
 
                     <button type="submit">
                         Send Message
@@ -249,4 +260,6 @@ export default function Portfolio() {
 
         </div>
     );
-}
+};
+
+export default App;
