@@ -3,36 +3,6 @@ import emailjs from "@emailjs/browser";
 
 const App = () => {
 
-    /* ================= STATES ================= */
-
-    const [menuOpen, setMenuOpen] = useState(false);
-
-    const [showProjects, setShowProjects] = useState(false);
-
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        message: ""
-    });
-
-    /* ================= TYPING EFFECT ================= */
-
-    const texts = [
-        "Web Developer",
-        "Frontend Developer",
-        "Web Designer",
-        "Programmer"
-    ];
-
-    const [textIndex, setTextIndex] = useState(0);
-
-    const [charIndex, setCharIndex] = useState(0);
-
-    const [displayText, setDisplayText] = useState("");
-
-    const [isDeleting, setIsDeleting] = useState(false);
-
-
     /* ================= EMAILJS INIT ================= */
 
     useEffect(() => {
@@ -42,27 +12,64 @@ const App = () => {
     }, []);
 
 
+    /* ================= MOBILE MENU ================= */
+
+    const [menuOpen, setMenuOpen] = useState(false);
+
+
+    /* ================= PROJECT LINKS ================= */
+
+    const [showLinks, setShowLinks] = useState(false);
+
+
+    /* ================= FORM DATA ================= */
+
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: ""
+    });
+
+
+    /* ================= CHANGING TEXT ================= */
+
+    const texts = [
+        "Web Developer",
+        "Frontend Developer",
+        "Web Designer",
+        "Programmer"
+    ];
+
+    const [count, setCount] = useState(0);
+
+    const [index, setIndex] = useState(0);
+
+    const [displayText, setDisplayText] = useState("");
+
+    const [isDeleting, setIsDeleting] = useState(false);
+
+
     /* ================= TEXT ANIMATION ================= */
 
     useEffect(() => {
 
-        const currentText = texts[textIndex];
+        const currentText = texts[count];
 
-        let timer;
+        let timeout;
 
         if (!isDeleting) {
 
-            setDisplayText(currentText.substring(0, charIndex + 1));
+            setDisplayText(currentText.slice(0, index + 1));
 
-            timer = setTimeout(() => {
+            timeout = setTimeout(() => {
 
-                setCharIndex(charIndex + 1);
+                setIndex(index + 1);
 
             }, 100);
 
-            if (charIndex === currentText.length) {
+            if (index === currentText.length) {
 
-                timer = setTimeout(() => {
+                timeout = setTimeout(() => {
 
                     setIsDeleting(true);
 
@@ -71,28 +78,28 @@ const App = () => {
 
         } else {
 
-            setDisplayText(currentText.substring(0, charIndex - 1));
+            setDisplayText(currentText.slice(0, index - 1));
 
-            timer = setTimeout(() => {
+            timeout = setTimeout(() => {
 
-                setCharIndex(charIndex - 1);
+                setIndex(index - 1);
 
             }, 50);
 
-            if (charIndex === 0) {
+            if (index === 0) {
 
                 setIsDeleting(false);
 
-                setTextIndex((prev) => (prev + 1) % texts.length);
+                setCount((count + 1) % texts.length);
             }
         }
 
-        return () => clearTimeout(timer);
+        return () => clearTimeout(timeout);
 
-    }, [charIndex, isDeleting, textIndex]);
+    }, [index, isDeleting, count]);
 
 
-    /* ================= HANDLE INPUT ================= */
+    /* ================= INPUT CHANGE ================= */
 
     const handleChange = (e) => {
 
@@ -103,18 +110,18 @@ const App = () => {
     };
 
 
-    /* ================= HANDLE FORM ================= */
+    /* ================= FORM SUBMIT ================= */
 
     const handleSubmit = (e) => {
 
         e.preventDefault();
 
         const emailPattern =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailPattern.test(formData.email)) {
 
-            alert("❌ Wrong Email! Please enter a valid email.");
+            alert("Wrong Email ❌ Please enter a valid email");
 
             return;
         }
@@ -127,31 +134,31 @@ const App = () => {
 
         .then(() => {
 
-            alert("✅ Message Sent Successfully!");
+            alert("Message sent successfully ✅");
 
             setFormData({
                 name: "",
                 email: "",
                 message: ""
             });
+
         })
 
         .catch((error) => {
 
             console.log(error);
 
-            alert("❌ Failed to send message.");
+            alert("Message failed ❌ Check EmailJS setup");
+
         });
     };
 
-
-    /* ================= JSX ================= */
 
     return (
 
         <div>
 
-            {/* ================= NAVBAR ================= */}
+            {/* ================= MOBILE MENU ================= */}
 
             <button
                 className={`menu-btn ${menuOpen ? "active" : ""}`}
@@ -160,7 +167,10 @@ const App = () => {
                 ☰
             </button>
 
-            <nav className={`menu ${menuOpen ? "show" : ""}`}>
+            <nav
+                id="menu"
+                className={menuOpen ? "show" : ""}
+            >
 
                 <a href="#home">Home</a>
 
@@ -173,7 +183,7 @@ const App = () => {
             </nav>
 
 
-            {/* ================= HERO ================= */}
+            {/* ================= HERO SECTION ================= */}
 
             <section id="home">
 
@@ -190,16 +200,14 @@ const App = () => {
 
             <section id="projects">
 
-                <button
-                    onClick={() => setShowProjects(!showProjects)}
-                >
+                <button onClick={() => setShowLinks(!showLinks)}>
                     View Project
                 </button>
 
-                {showProjects && (
+                {showLinks && (
 
                     <div
-                        className="project-links"
+                        id="projectLinks"
                         style={{
                             display: "flex",
                             flexDirection: "column",
@@ -207,18 +215,20 @@ const App = () => {
                             marginTop: "10px"
                         }}
                     >
+
                         <a href="#">📄 PDF</a>
 
                         <a href="#">📊 PPT</a>
 
                         <a href="#">🎨 Canva</a>
+
                     </div>
                 )}
 
             </section>
 
 
-            {/* ================= CONTACT ================= */}
+            {/* ================= CONTACT FORM ================= */}
 
             <section id="contact">
 
