@@ -466,21 +466,24 @@
             <h3>Send Message</h3>
 
             <input type="text"
+                   id="name"
                    name="from_name"
                    placeholder="Your Name"
                    required>
 
             <input type="email"
+                   id="email"
                    name="from_email"
                    placeholder="Your Email"
                    required>
 
             <textarea name="message"
-                      rows="8"
+                      id="message"
+                      rows="6"
                       placeholder="Your Message"
                       required></textarea>
 
-            <button type="submit">
+            <button type="submit" id="submitBtn">
                 Send Message
             </button>
 
@@ -489,6 +492,8 @@
     </div>
 
 </section>
+
+<!-- FOOTER -->
 <footer class="footer">
 
     <div class="footer-content">
@@ -516,5 +521,3 @@
     </p>
 
 </footer>
-</body>
-</html>
