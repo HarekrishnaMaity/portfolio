@@ -1,10 +1,12 @@
-function toggleMenu(icon) {n
+function toggleMenu(icon) {
 
     let menu = document.getElementById("menu");
 
     menu.classList.toggle("show");
     icon.classList.toggle("active");
 }
+
+/* PROJECT LINKS */
 
 function toggleLinks(){
 
@@ -48,14 +50,14 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch((error) => {
 
             console.log(error);
+
             alert("Message failed ❌ Check EmailJS setup");
 
         });
 
     });
 
-}); // ← Missing closing line added here
-
+});
 
 /* CHANGING TEXT ANIMATION */
 
@@ -76,10 +78,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function type() {
 
         if (count === texts.length) {
+
             count = 0;
+
         }
 
         currentText = texts[count];
+
         letter = currentText.slice(0, ++index);
 
         document.querySelector(".changing-text").textContent = letter;
@@ -87,10 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (letter.length === currentText.length) {
 
             setTimeout(erase, 1500);
+
             return;
+
         }
 
         setTimeout(type, 100);
+
     }
 
     function erase() {
@@ -102,11 +110,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (letter.length === 0) {
 
             count++;
+
             setTimeout(type, 200);
+
             return;
+
         }
 
         setTimeout(erase, 50);
+
     }
 
     type();
