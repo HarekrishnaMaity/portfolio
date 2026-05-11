@@ -111,3 +111,19 @@ document.addEventListener("DOMContentLoaded", () => {
     type();
 
 });
+function toggleLinks(){
+
+    const links = document.getElementById("projectLinks");
+
+    if(links.style.display === "flex"){
+
+        links.style.display = "none";
+
+    }
+    else{
+
+        links.style.display = "flex";
+
+    }
+
+});
