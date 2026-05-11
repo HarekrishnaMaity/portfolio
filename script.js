@@ -1,108 +1,19 @@
-/* ================= EMAILJS INIT ================= */
+import React, { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 
-(function () {
+export default function Portfolio() {
 
-    emailjs.init("9QrxFWV8Q1pfl-yZK");
+    /* ================= STATES ================= */
 
-})();
+    const [menuOpen, setMenuOpen] = useState(false);
 
+    const [linksOpen, setLinksOpen] = useState(false);
 
-/* ================= MOBILE MENU ================= */
-
-function toggleMenu(icon) {
-
-    const menu = document.getElementById("menu");
-
-    menu.classList.toggle("show");
-
-    icon.classList.toggle("active");
-
-}
-
-
-/* ================= PROJECT LINKS ================= */
-
-function toggleLinks() {
-
-    const links = document.getElementById("projectLinks");
-
-    if (links.style.display === "flex") {
-
-        links.style.display = "none";
-
-    } else {
-
-        links.style.display = "flex";
-
-    }
-
-}
-
-
-/* ================= EMAILJS CONTACT FORM ================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const form = document.getElementById("contact-form");
-
-    if (form) {
-
-        form.addEventListener("submit", function (e) {
-
-            e.preventDefault();
-
-            /* GET EMAIL */
-
-            const email =
-            form.querySelector('input[type="email"]').value;
-
-            /* EMAIL VALIDATION */
-
-            const emailPattern =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (!emailPattern.test(email)) {
-
-                alert("Wrong Email ❌ Please enter a valid email");
-
-                return;
-
-            }
-
-            /* SEND EMAIL */
-
-            emailjs.sendForm(
-                "service_7v8ttbm",
-                "template_5e8w01g",
-                this
-            )
-
-            .then(() => {
-
-                alert("Message sent successfully ✅");
-
-                form.reset();
-
-            })
-
-            .catch((error) => {
-
-                console.log(error);
-
-                alert("Message failed ❌ Check EmailJS setup");
-
-            });
-
-        });
-
-    }
-
-});
-
-
-/* ================= CHANGING TEXT ANIMATION ================= */
-
-document.addEventListener("DOMContentLoaded", () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: ""
+    });
 
     const texts = [
         "Web Developer",
@@ -111,60 +22,231 @@ document.addEventListener("DOMContentLoaded", () => {
         "Programmer"
     ];
 
-    let count = 0;
+    const [textIndex, setTextIndex] = useState(0);
 
-    let index = 0;
+    const [displayText, setDisplayText] = useState("");
 
-    let currentText = "";
+    const [isDeleting, setIsDeleting] = useState(false);
 
-    let letter = "";
+    const [charIndex, setCharIndex] = useState(0);
 
-    function type() {
+    /* ================= EMAILJS INIT ================= */
 
-        if (count === texts.length) {
+    useEffect(() => {
 
-            count = 0;
+        emailjs.init("9QrxFWV8Q1pfl-yZK");
 
+    }, []);
+
+    /* ================= TYPING EFFECT ================= */
+
+    useEffect(() => {
+
+        const currentText = texts[textIndex];
+
+        let timeout;
+
+        if (!isDeleting) {
+
+            setDisplayText(currentText.slice(0, charIndex + 1));
+
+            timeout = setTimeout(() => {
+
+                setCharIndex(charIndex + 1);
+
+            }, 100);
+
+            if (charIndex === currentText.length) {
+
+                timeout = setTimeout(() => {
+
+                    setIsDeleting(true);
+
+                }, 1500);
+            }
+
+        } else {
+
+            setDisplayText(currentText.slice(0, charIndex - 1));
+
+            timeout = setTimeout(() => {
+
+                setCharIndex(charIndex - 1);
+
+            }, 50);
+
+            if (charIndex === 0) {
+
+                setIsDeleting(false);
+
+                setTextIndex((textIndex + 1) % texts.length);
+            }
         }
 
-        currentText = texts[count];
+        return () => clearTimeout(timeout);
 
-        letter = currentText.slice(0, ++index);
+    }, [charIndex, isDeleting, textIndex]);
 
-        document.querySelector(".changing-text").textContent = letter;
+    /* ================= HANDLE INPUT ================= */
 
-        if (letter.length === currentText.length) {
+    const handleChange = (e) => {
 
-            setTimeout(erase, 1500);
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    /* ================= HANDLE SUBMIT ================= */
+
+    const handleSubmit = (e) => {
+
+        e.preventDefault();
+
+        const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(formData.email)) {
+
+            alert("Wrong Email ❌ Please enter a valid email");
 
             return;
-
         }
 
-        setTimeout(type, 100);
+        emailjs.send(
+            "service_7v8ttbm",
+            "template_5e8w01g",
+            formData
+        )
 
-    }
+        .then(() => {
 
-    function erase() {
+            alert("Message sent successfully ✅");
 
-        letter = currentText.slice(0, --index);
+            setFormData({
+                name: "",
+                email: "",
+                message: ""
+            });
 
-        document.querySelector(".changing-text").textContent = letter;
+        })
 
-        if (letter.length === 0) {
+        .catch((error) => {
 
-            count++;
+            console.log(error);
 
-            setTimeout(type, 200);
+            alert("Message failed ❌ Check EmailJS setup");
 
-            return;
+        });
+    };
 
-        }
+    return (
 
-        setTimeout(erase, 50);
+        <div>
 
-    }
+            {/* ================= NAVBAR ================= */}
 
-    type();
+            <nav className="navbar">
 
-});
+                <div
+                    className={`menu-icon ${menuOpen ? "active" : ""}`}
+                    onClick={() => setMenuOpen(!menuOpen)}
+                >
+                    ☰
+                </div>
+
+                <ul className={`menu ${menuOpen ? "show" : ""}`}>
+
+                    <li><a href="#home">Home</a></li>
+
+                    <li><a href="#projects">Projects</a></li>
+
+                    <li><a href="#contact">Contact</a></li>
+
+                </ul>
+
+            </nav>
+
+            {/* ================= HERO ================= */}
+
+            <section id="home">
+
+                <h1>Hello, I'm Hari</h1>
+
+                <h2 className="changing-text">
+                    {displayText}
+                </h2>
+
+            </section>
+
+            {/* ================= PROJECT SECTION ================= */}
+
+            <section id="projects">
+
+                <h2>My Projects</h2>
+
+                <button
+                    onClick={() => setLinksOpen(!linksOpen)}
+                >
+                    View Project
+                </button>
+
+                {linksOpen && (
+
+                    <div className="project-links">
+
+                        <a href="#">PPT</a>
+
+                        <a href="#">PDF</a>
+
+                        <a href="#">Canvas</a>
+
+                    </div>
+
+                )}
+
+            </section>
+
+            {/* ================= CONTACT FORM ================= */}
+
+            <section id="contact">
+
+                <form onSubmit={handleSubmit}>
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <textarea
+                        name="message"
+                        placeholder="Your Message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <button type="submit">
+                        Send Message
+                    </button>
+
+                </form>
+
+            </section>
+
+        </div>
+    );
+}
