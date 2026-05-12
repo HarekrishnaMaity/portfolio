@@ -72,11 +72,11 @@ document.addEventListener("DOMContentLoaded", function () {
             /* SEND EMAIL */
 
             emailjs.sendForm(
-                "service_7v8ttbm",
-                "template_5e8w01g",
-                this
-            )
-
+    "service_7v8ttbm",
+    "template_5e8w01g",
+    this,
+    "9QrxFWV8Q1pfl-yZK"
+)
             .then(() => {
 
                 alert("Message sent successfully ✅");
