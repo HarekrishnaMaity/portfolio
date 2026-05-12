@@ -1019,6 +1019,19 @@ body {
     padding: 40px 20px;
     margin-top: 50px;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.footer {
+    width: 100%;
+}
 
 /* Name section */
 .footer-content h2 {
