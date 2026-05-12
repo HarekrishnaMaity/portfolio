@@ -1154,36 +1154,34 @@ body {
     background: white;
     color: #0f172a;
 }
+
 .footer {
-    width: 100%;
-    background: #0f0f0f;
-    color: #fff;
+    background: #111;
+    color: white;
     text-align: center;
     padding: 40px 20px;
-    box-sizing: border-box;
+    margin-top: 60px;
+    border-top: 1px solid #333;
 }
 
 .footer-content h2 {
     font-size: 28px;
-    color: #00bcd4;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .footer-content p {
-    font-size: 14px;
-    color: #ccc;
+    color: #aaa;
+    margin-bottom: 20px;
 }
 
-/* Links */
 .footer-links {
     margin: 20px 0;
 }
 
 .footer-links a {
-    color: #fff;
+    color: white;
     text-decoration: none;
-    margin: 0 15px;
-    font-size: 15px;
+    margin: 0 12px;
     transition: 0.3s;
 }
 
@@ -1191,49 +1189,63 @@ body {
     color: #00bcd4;
 }
 
-/* Social */
 .footer-social {
-    margin: 15px 0;
+    margin: 20px 0;
 }
 
 .footer-social a {
-    font-size: 22px;
+    font-size: 24px;
     margin: 0 10px;
-    color: #fff;
+    text-decoration: none;
     transition: 0.3s;
 }
 
 .footer-social a:hover {
-    transform: translateY(-5px);
-    color: #00bcd4;
+    transform: scale(1.2);
 }
 
 .copyright {
     margin-top: 20px;
-    font-size: 13px;
+    font-size: 14px;
     color: #888;
-    border-top: 1px solid #222;
-    padding-top: 15px;
 }
 @media (max-width: 768px) {
 
-    .footer-links {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .footer-links a {
-        margin: 5px 0;
-        font-size: 16px;
-    }
-
-    .footer-social a {
-        font-size: 20px;
-        margin: 8px;
+    .footer {
+        padding: 30px 15px;
+        margin-top: 40px;
     }
 
     .footer-content h2 {
         font-size: 22px;
+    }
+
+    .footer-content p {
+        font-size: 14px;
+    }
+
+    /* 🔥 Stack links vertically on mobile */
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 20px 0;
+    }
+
+    .footer-links a {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    /* Social icons spacing fix */
+    .footer-social a {
+        font-size: 22px;
+        margin: 0 8px;
+        display: inline-block;
+    }
+
+    .copyright {
+        font-size: 12px;
+        padding-top: 10px;
     }
 }
