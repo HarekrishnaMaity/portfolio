@@ -1020,11 +1020,12 @@ body {
     margin-top: 50px;
 }
 
-/* Name + role */
+/* Name section */
 .footer-content h2 {
-    font-size: 26px;
+    font-size: 28px;
     margin-bottom: 8px;
     color: #00bcd4;
+    letter-spacing: 1px;
 }
 
 .footer-content p {
@@ -1038,11 +1039,11 @@ body {
 }
 
 .footer-links a {
-    color: #ffffff;
     text-decoration: none;
+    color: #ffffff;
     margin: 0 12px;
     font-size: 15px;
-    transition: 0.3s;
+    transition: 0.3s ease;
     position: relative;
 }
 
@@ -1057,14 +1058,14 @@ body {
 
 .footer-social a {
     display: inline-block;
-    font-size: 20px;
+    font-size: 22px;
     margin: 0 10px;
     color: #ffffff;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .footer-social a:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     color: #00bcd4;
 }
 
@@ -1075,6 +1076,19 @@ body {
     color: #888888;
     border-top: 1px solid #222;
     padding-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .footer-links a {
+        display: block;
+        margin: 8px 0;
+    }
+
+    .footer-social a {
+        font-size: 20px;
+        margin: 8px;
+    }
 }
 /* =========================
    MOBILE OPTIMIZATION
