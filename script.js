@@ -1,12 +1,3 @@
-/* ================= EMAILJS INIT ================= */
-
-(function () {
-
-    emailjs.init("9QrxFWV8Q1pfl-yZK");
-
-})();
-
-
 /* ================= MOBILE MENU ================= */
 
 function toggleMenu(icon) {
@@ -40,81 +31,84 @@ function toggleLinks() {
 
 
 /* ================= EMAILJS CONTACT FORM ================= */
-import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
+(function () {
 
-function Contact() {
-  const form = useRef();
+    emailjs.init({
+        publicKey: "9QrxFWV8Q1pfl-yZK"
+    });
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+})();
 
-    const email = form.current.from_email.value;
+document.addEventListener("DOMContentLoaded", function () {
 
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const form = document.getElementById("contact-form");
 
-    if (!emailPattern.test(email)) {
-      alert("Wrong Email ❌ Please enter a valid email");
-      return;
+    if (!form) {
+        console.log("Contact form not found");
+        return;
     }
 
-    emailjs
-      .sendForm(
-        "service_9ufumvp",
-        "template_5e8w01g",
-        form.current,
-        "9QrxFWV8Q1pfl-yZK"
-      )
-      .then(() => {
-        alert("Message sent successfully ✅");
-        form.current.reset();
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Message failed ❌ Check EmailJS setup");
-      });
-  };
+    form.addEventListener("submit", function (e) {
 
-  return (
-    <div>
-      <form
-        className="contact-form"
-        id="contact-form"
-        ref={form}
-        onSubmit={sendEmail}
-      >
-        <h3>Send Message</h3>
+        e.preventDefault();
 
-        <input
-          type="text"
-          name="from_name"
-          placeholder="Your Name"
-          required
-        />
+        const name = form.from_name.value.trim();
+        const email = form.from_email.value.trim();
+        const message = form.message.value.trim();
 
-        <input
-          type="email"
-          name="from_email"
-          placeholder="Your Email"
-          required
-        />
+        // Check empty fields
+        if (!name || !email || !message) {
+            alert("Please fill all fields ❌");
+            return;
+        }
 
-        <textarea
-          name="message"
-          rows="8"
-          placeholder="Your Message"
-          required
-        ></textarea>
+        // Email validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        <button type="submit">
-          Send Message
-        </button>
-      </form>
-    </div>
-  );
-}
+        if (!emailPattern.test(email)) {
+            alert("Wrong Email ❌ Please enter a valid email");
+            return;
+        }
 
-export default Contact;
+        // Disable button while sending
+        const button = form.querySelector("button");
+        button.disabled = true;
+        button.textContent = "Sending...";
+
+        // Send Email
+        emailjs.sendForm(
+            "service_9ufumvp",
+            "template_5e8w01g",
+            form
+        )
+        .then(function (response) {
+
+            console.log("SUCCESS:", response);
+
+            alert("Message sent successfully ✅");
+
+            form.reset();
+
+            button.disabled = false;
+            button.textContent = "Send Message";
+
+        })
+        .catch(function (error) {
+
+            console.error("EMAILJS ERROR:", error);
+
+            alert(
+                "Message failed ❌\n\n" +
+                "Error: " +
+                (error.text || error.message || "Unknown error")
+            );
+
+            button.disabled = false;
+            button.textContent = "Send Message";
+
+        });
+
+    });
 
 /* ================= CHANGING TEXT ANIMATION ================= */
 
