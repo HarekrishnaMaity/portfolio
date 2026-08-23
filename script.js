@@ -1,35 +1,40 @@
 /* ================= MOBILE MENU ================= */
 
 function toggleMenu(icon) {
+
     const menu = document.getElementById("menu");
 
     menu.classList.toggle("show");
+
     icon.classList.toggle("active");
+
 }
 
 
 /* ================= PROJECT LINKS ================= */
 
 function toggleLinks() {
+
     const links = document.getElementById("projectLinks");
 
     if (links.style.display === "flex") {
+
         links.style.display = "none";
+
     } else {
+
         links.style.display = "flex";
+
     }
+
 }
 
 
 /* ================= EMAILJS ================= */
 
-(function () {
-
-    emailjs.init({
-        publicKey: "9QrxFWV8Q1pfl-yZK"
-    });
-
-})();
+emailjs.init({
+    publicKey: "9QrxFWV8Q1pfl-yZK"
+});
 
 
 /* ================= PAGE LOADED ================= */
@@ -47,22 +52,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
             e.preventDefault();
 
+            const button = form.querySelector("button");
+
             const name = form.from_name.value.trim();
             const email = form.from_email.value.trim();
             const message = form.message.value.trim();
 
 
-            /* CHECK EMPTY FIELDS */
+            /* EMPTY FIELD CHECK */
 
             if (!name || !email || !message) {
 
                 alert("Please fill all fields ❌");
 
                 return;
+
             }
 
 
-            /* EMAIL VALIDATION */
+            /* EMAIL CHECK */
 
             const emailPattern =
                 /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -72,18 +80,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Wrong Email ❌ Please enter a valid email");
 
                 return;
+
             }
 
 
-            /* BUTTON */
-
-            const button = form.querySelector("button");
+            /* SENDING */
 
             button.disabled = true;
             button.textContent = "Sending...";
 
-
-            /* SEND EMAIL */
 
             emailjs.sendForm(
                 "service_9ufumvp",
@@ -110,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 alert(
                     "Message failed ❌\n\n" +
-                    "Error: " +
+                    "EmailJS Error: " +
                     (error.text || error.message || "Unknown error")
                 );
 
@@ -122,78 +127,83 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
+    /* ================= CHANGING TEXT ================= */
 
+document.addEventListener("DOMContentLoaded", function () {
 
-    /* ================= CHANGING TEXT ANIMATION ================= */
+    const changingText = document.querySelector(".changing-text");
 
-    const changingText =
-        document.querySelector(".changing-text");
-
-    if (changingText) {
-
-        const texts = [
-            "Web Developer",
-            "Frontend Developer",
-            "Web Designer",
-            "Programmer"
-        ];
-
-        let count = 0;
-        let index = 0;
-        let currentText = "";
-        let letter = "";
-
-
-        function type() {
-
-            if (count === texts.length) {
-                count = 0;
-            }
-
-            currentText = texts[count];
-
-            letter =
-                currentText.slice(0, ++index);
-
-            changingText.textContent = letter;
-
-
-            if (letter.length === currentText.length) {
-
-                setTimeout(erase, 1500);
-
-                return;
-            }
-
-            setTimeout(type, 100);
-
-        }
-
-
-        function erase() {
-
-            letter =
-                currentText.slice(0, --index);
-
-            changingText.textContent = letter;
-
-
-            if (letter.length === 0) {
-
-                count++;
-
-                setTimeout(type, 200);
-
-                return;
-            }
-
-            setTimeout(erase, 50);
-
-        }
-
-
-        type();
-
+    if (!changingText) {
+        console.log("Changing text element not found");
+        return;
     }
 
+    const texts = [
+        "Web Developer",
+        "Frontend Developer",
+        "Web Designer",
+        "Programmer"
+    ];
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function animateText() {
+
+        const currentText = texts[textIndex];
+
+        if (!deleting) {
+
+            // Add letters
+            changingText.textContent =
+                currentText.substring(0, charIndex + 1);
+
+            charIndex++;
+
+            // Full word typed
+            if (charIndex === currentText.length) {
+
+                deleting = true;
+
+                setTimeout(animateText, 1500);
+
+                return;
+            }
+
+            setTimeout(animateText, 100);
+
+        } else {
+
+            // Remove letters
+            changingText.textContent =
+                currentText.substring(0, charIndex - 1);
+
+            charIndex--;
+
+            // Word completely removed
+            if (charIndex === 0) {
+
+                deleting = false;
+
+                textIndex++;
+
+                if (textIndex >= texts.length) {
+                    textIndex = 0;
+                }
+
+                setTimeout(animateText, 300);
+
+                return;
+            }
+
+            setTimeout(animateText, 50);
+        }
+    }
+
+    animateText();
+
 });
+
+
+   
