@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
             /* SEND EMAIL */
 
             emailjs.sendForm(
-    "service_7v8ttbm",
+    "service_9ufumvp",
     "template_5e8w01g",
     this,
     "9QrxFWV8Q1pfl-yZK"
