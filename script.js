@@ -17,15 +17,7 @@ function toggleLinks() {
 
     const links = document.getElementById("projectLinks");
 
-    if (links.style.display === "flex") {
-
-        links.style.display = "none";
-
-    } else {
-
-        links.style.display = "flex";
-
-    }
+    links.classList.toggle("show-links");
 
 }
 
@@ -37,14 +29,14 @@ emailjs.init({
 });
 
 
-/* ================= PAGE LOADED ================= */
-
 document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ================= CONTACT FORM ================= */
 
-    const form = document.getElementById("contact-form");
+    const form =
+        document.getElementById("contact-form");
+
 
     if (form) {
 
@@ -52,158 +44,197 @@ document.addEventListener("DOMContentLoaded", function () {
 
             e.preventDefault();
 
-            const button = form.querySelector("button");
+            const button =
+                form.querySelector("button");
 
-            const name = form.from_name.value.trim();
-            const email = form.from_email.value.trim();
-            const message = form.message.value.trim();
-
-
-            /* EMPTY FIELD CHECK */
-
-            if (!name || !email || !message) {
-
-                alert("Please fill all fields ❌");
-
-                return;
-
-            }
-
-
-            /* EMAIL CHECK */
+            const email =
+                form.from_email.value.trim();
 
             const emailPattern =
                 /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+
             if (!emailPattern.test(email)) {
 
-                alert("Wrong Email ❌ Please enter a valid email");
+                alert(
+                    "Wrong Email ❌ Please enter a valid email"
+                );
 
                 return;
 
             }
 
 
-            /* SENDING */
-
             button.disabled = true;
+
             button.textContent = "Sending...";
 
 
             emailjs.sendForm(
+
                 "service_9ufumvp",
+
                 "template_5e8w01g",
+
                 form
+
             )
 
-            .then(function (response) {
+            .then(function () {
 
-                console.log("SUCCESS:", response);
-
-                alert("Message sent successfully ✅");
+                alert(
+                    "Message sent successfully ✅"
+                );
 
                 form.reset();
 
                 button.disabled = false;
-                button.textContent = "Send Message";
+
+                button.textContent =
+                    "Send Message";
 
             })
 
             .catch(function (error) {
 
-                console.error("EMAILJS ERROR:", error);
+                console.error(
+                    "EMAILJS ERROR:",
+                    error
+                );
 
                 alert(
                     "Message failed ❌\n\n" +
-                    "EmailJS Error: " +
-                    (error.text || error.message || "Unknown error")
+                    (error.text ||
+                     error.message ||
+                     "Check EmailJS setup")
                 );
 
                 button.disabled = false;
-                button.textContent = "Send Message";
+
+                button.textContent =
+                    "Send Message";
 
             });
 
         });
 
     }
+
+
     /* ================= CHANGING TEXT ================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+    const changingText =
+        document.querySelector(".changing-text");
 
-    const changingText = document.querySelector(".changing-text");
 
-    if (!changingText) {
-        console.log("Changing text element not found");
-        return;
-    }
+    if (changingText) {
 
-    const texts = [
-        "Web Developer",
-        "Frontend Developer",
-        "Web Designer",
-        "Programmer"
-    ];
+        const texts = [
 
-    let textIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
+            "Web Developer",
+            "Frontend Developer",
+            "Web Designer",
+            "Programmer"
 
-    function animateText() {
+        ];
 
-        const currentText = texts[textIndex];
 
-        if (!deleting) {
+        let textIndex = 0;
 
-            // Add letters
-            changingText.textContent =
-                currentText.substring(0, charIndex + 1);
+        let charIndex = 0;
 
-            charIndex++;
+        let deleting = false;
 
-            // Full word typed
-            if (charIndex === currentText.length) {
 
-                deleting = true;
+        function animateText() {
 
-                setTimeout(animateText, 1500);
+            const currentText =
+                texts[textIndex];
 
-                return;
-            }
 
-            setTimeout(animateText, 100);
+            if (!deleting) {
 
-        } else {
+                changingText.textContent =
+                    currentText.substring(
+                        0,
+                        charIndex + 1
+                    );
 
-            // Remove letters
-            changingText.textContent =
-                currentText.substring(0, charIndex - 1);
+                charIndex++;
 
-            charIndex--;
 
-            // Word completely removed
-            if (charIndex === 0) {
+                if (
+                    charIndex ===
+                    currentText.length
+                ) {
 
-                deleting = false;
+                    deleting = true;
 
-                textIndex++;
+                    setTimeout(
+                        animateText,
+                        1500
+                    );
 
-                if (textIndex >= texts.length) {
-                    textIndex = 0;
+                    return;
+
                 }
 
-                setTimeout(animateText, 300);
 
-                return;
+                setTimeout(
+                    animateText,
+                    100
+                );
+
+            } else {
+
+                changingText.textContent =
+                    currentText.substring(
+                        0,
+                        charIndex - 1
+                    );
+
+                charIndex--;
+
+
+                if (charIndex === 0) {
+
+                    deleting = false;
+
+                    textIndex++;
+
+
+                    if (
+                        textIndex >=
+                        texts.length
+                    ) {
+
+                        textIndex = 0;
+
+                    }
+
+
+                    setTimeout(
+                        animateText,
+                        300
+                    );
+
+                    return;
+
+                }
+
+
+                setTimeout(
+                    animateText,
+                    50
+                );
+
             }
 
-            setTimeout(animateText, 50);
         }
+
+
+        animateText();
+
     }
 
-    animateText();
-
 });
-
-
-   
