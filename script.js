@@ -40,65 +40,81 @@ function toggleLinks() {
 
 
 /* ================= EMAILJS CONTACT FORM ================= */
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
-document.addEventListener("DOMContentLoaded", function () {
+function Contact() {
+  const form = useRef();
 
-    const form = document.getElementById("contact-form");
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-    if (form) {
+    const email = form.current.from_email.value;
 
-        form.addEventListener("submit", function (e) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            e.preventDefault();
-
-            /* GET EMAIL */
-
-            const email =
-            form.querySelector('input[type="email"]').value;
-
-            /* EMAIL VALIDATION */
-
-            const emailPattern =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (!emailPattern.test(email)) {
-
-                alert("Wrong Email ❌ Please enter a valid email");
-
-                return;
-
-            }
-
-            /* SEND EMAIL */
-
-            emailjs.sendForm(
-    "service_9ufumvp",
-    "template_5e8w01g",
-    this,
-    "9QrxFWV8Q1pfl-yZK"
-)
-            .then(() => {
-
-                alert("Message sent successfully ✅");
-
-                form.reset();
-
-            })
-
-            .catch((error) => {
-
-                console.log(error);
-
-                alert("Message failed ❌ Check EmailJS setup");
-
-            });
-
-        });
-
+    if (!emailPattern.test(email)) {
+      alert("Wrong Email ❌ Please enter a valid email");
+      return;
     }
 
-});
+    emailjs
+      .sendForm(
+        "service_9ufumvp",
+        "template_5e8w01g",
+        form.current,
+        "9QrxFWV8Q1pfl-yZK"
+      )
+      .then(() => {
+        alert("Message sent successfully ✅");
+        form.current.reset();
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Message failed ❌ Check EmailJS setup");
+      });
+  };
 
+  return (
+    <div>
+      <form
+        className="contact-form"
+        id="contact-form"
+        ref={form}
+        onSubmit={sendEmail}
+      >
+        <h3>Send Message</h3>
+
+        <input
+          type="text"
+          name="from_name"
+          placeholder="Your Name"
+          required
+        />
+
+        <input
+          type="email"
+          name="from_email"
+          placeholder="Your Email"
+          required
+        />
+
+        <textarea
+          name="message"
+          rows="8"
+          placeholder="Your Message"
+          required
+        ></textarea>
+
+        <button type="submit">
+          Send Message
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default Contact;
 
 /* ================= CHANGING TEXT ANIMATION ================= */
 
