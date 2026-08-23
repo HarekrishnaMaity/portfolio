@@ -1,36 +1,28 @@
 /* ================= MOBILE MENU ================= */
 
 function toggleMenu(icon) {
-
     const menu = document.getElementById("menu");
 
     menu.classList.toggle("show");
-
     icon.classList.toggle("active");
-
 }
 
 
 /* ================= PROJECT LINKS ================= */
 
 function toggleLinks() {
-
     const links = document.getElementById("projectLinks");
 
     if (links.style.display === "flex") {
-
         links.style.display = "none";
-
     } else {
-
         links.style.display = "flex";
-
     }
-
 }
 
 
-/* ================= EMAILJS CONTACT FORM ================= */
+/* ================= EMAILJS ================= */
+
 (function () {
 
     emailjs.init({
@@ -39,142 +31,169 @@ function toggleLinks() {
 
 })();
 
+
+/* ================= PAGE LOADED ================= */
+
 document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* ================= CONTACT FORM ================= */
 
     const form = document.getElementById("contact-form");
 
-    if (!form) {
-        console.log("Contact form not found");
-        return;
-    }
+    if (form) {
 
-    form.addEventListener("submit", function (e) {
+        form.addEventListener("submit", function (e) {
 
-        e.preventDefault();
+            e.preventDefault();
 
-        const name = form.from_name.value.trim();
-        const email = form.from_email.value.trim();
-        const message = form.message.value.trim();
+            const name = form.from_name.value.trim();
+            const email = form.from_email.value.trim();
+            const message = form.message.value.trim();
 
-        // Check empty fields
-        if (!name || !email || !message) {
-            alert("Please fill all fields ❌");
-            return;
-        }
 
-        // Email validation
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            /* CHECK EMPTY FIELDS */
 
-        if (!emailPattern.test(email)) {
-            alert("Wrong Email ❌ Please enter a valid email");
-            return;
-        }
+            if (!name || !email || !message) {
 
-        // Disable button while sending
-        const button = form.querySelector("button");
-        button.disabled = true;
-        button.textContent = "Sending...";
+                alert("Please fill all fields ❌");
 
-        // Send Email
-        emailjs.sendForm(
-            "service_9ufumvp",
-            "template_5e8w01g",
-            form
-        )
-        .then(function (response) {
+                return;
+            }
 
-            console.log("SUCCESS:", response);
 
-            alert("Message sent successfully ✅");
+            /* EMAIL VALIDATION */
 
-            form.reset();
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            button.disabled = false;
-            button.textContent = "Send Message";
+            if (!emailPattern.test(email)) {
 
-        })
-        .catch(function (error) {
+                alert("Wrong Email ❌ Please enter a valid email");
 
-            console.error("EMAILJS ERROR:", error);
+                return;
+            }
 
-            alert(
-                "Message failed ❌\n\n" +
-                "Error: " +
-                (error.text || error.message || "Unknown error")
-            );
 
-            button.disabled = false;
-            button.textContent = "Send Message";
+            /* BUTTON */
+
+            const button = form.querySelector("button");
+
+            button.disabled = true;
+            button.textContent = "Sending...";
+
+
+            /* SEND EMAIL */
+
+            emailjs.sendForm(
+                "service_9ufumvp",
+                "template_5e8w01g",
+                form
+            )
+
+            .then(function (response) {
+
+                console.log("SUCCESS:", response);
+
+                alert("Message sent successfully ✅");
+
+                form.reset();
+
+                button.disabled = false;
+                button.textContent = "Send Message";
+
+            })
+
+            .catch(function (error) {
+
+                console.error("EMAILJS ERROR:", error);
+
+                alert(
+                    "Message failed ❌\n\n" +
+                    "Error: " +
+                    (error.text || error.message || "Unknown error")
+                );
+
+                button.disabled = false;
+                button.textContent = "Send Message";
+
+            });
 
         });
 
-    });
-
-/* ================= CHANGING TEXT ANIMATION ================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const texts = [
-        "Web Developer",
-        "Frontend Developer",
-        "Web Designer",
-        "Programmer"
-    ];
-
-    let count = 0;
-
-    let index = 0;
-
-    let currentText = "";
-
-    let letter = "";
-
-    function type() {
-
-        if (count === texts.length) {
-
-            count = 0;
-
-        }
-
-        currentText = texts[count];
-
-        letter = currentText.slice(0, ++index);
-
-        document.querySelector(".changing-text").textContent = letter;
-
-        if (letter.length === currentText.length) {
-
-            setTimeout(erase, 1500);
-
-            return;
-
-        }
-
-        setTimeout(type, 100);
-
     }
 
-    function erase() {
 
-        letter = currentText.slice(0, --index);
+    /* ================= CHANGING TEXT ANIMATION ================= */
 
-        document.querySelector(".changing-text").textContent = letter;
+    const changingText =
+        document.querySelector(".changing-text");
 
-        if (letter.length === 0) {
+    if (changingText) {
 
-            count++;
+        const texts = [
+            "Web Developer",
+            "Frontend Developer",
+            "Web Designer",
+            "Programmer"
+        ];
 
-            setTimeout(type, 200);
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
 
-            return;
+
+        function type() {
+
+            if (count === texts.length) {
+                count = 0;
+            }
+
+            currentText = texts[count];
+
+            letter =
+                currentText.slice(0, ++index);
+
+            changingText.textContent = letter;
+
+
+            if (letter.length === currentText.length) {
+
+                setTimeout(erase, 1500);
+
+                return;
+            }
+
+            setTimeout(type, 100);
 
         }
 
-        setTimeout(erase, 50);
+
+        function erase() {
+
+            letter =
+                currentText.slice(0, --index);
+
+            changingText.textContent = letter;
+
+
+            if (letter.length === 0) {
+
+                count++;
+
+                setTimeout(type, 200);
+
+                return;
+            }
+
+            setTimeout(erase, 50);
+
+        }
+
+
+        type();
 
     }
-
-    type();
 
 });
