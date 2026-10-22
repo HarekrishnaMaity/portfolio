@@ -1,240 +1,164 @@
+
 /* ================= MOBILE MENU ================= */
 
 function toggleMenu(icon) {
-
     const menu = document.getElementById("menu");
 
-    menu.classList.toggle("show");
+    if (menu) {
+        menu.classList.toggle("show");
+    }
 
-    icon.classList.toggle("active");
-
+    if (icon) {
+        icon.classList.toggle("active");
+    }
 }
 
 
 /* ================= PROJECT LINKS ================= */
 
 function toggleLinks() {
-
     const links = document.getElementById("projectLinks");
 
-    links.classList.toggle("show-links");
-
+    if (links) {
+        links.classList.toggle("show-links");
+    }
 }
 
 
 /* ================= EMAILJS ================= */
 
-emailjs.init({
-    publicKey: "9QrxFWV8Q1pfl-yZK"
-});
-
+// Make sure the EmailJS browser SDK is loaded in your HTML
+// before this script runs.
 
 document.addEventListener("DOMContentLoaded", function () {
 
-
     /* ================= CONTACT FORM ================= */
 
-    const form =
-        document.getElementById("contact-form");
-
+    const form = document.getElementById("contact-form");
 
     if (form) {
-
         form.addEventListener("submit", function (e) {
-
             e.preventDefault();
 
-            const button =
-                form.querySelector("button");
+            const button = form.querySelector('button[type="submit"]');
+            const emailInput = form.elements.namedItem("from_email");
+            const email = emailInput ? emailInput.value.trim() : "";
 
-            const email =
-                form.from_email.value.trim();
-
-            const emailPattern =
-                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             if (!emailPattern.test(email)) {
-
-                alert(
-                    "Wrong Email ❌ Please enter a valid email"
-                );
-
+                alert("Wrong Email ❌ Please enter a valid email");
                 return;
-
             }
 
+            if (!window.emailjs) {
+                alert("EmailJS failed to load. Check your EmailJS script in HTML.");
+                return;
+            }
 
             button.disabled = true;
-
             button.textContent = "Sending...";
 
-
             emailjs.sendForm(
-
                 "service_9ufumvp",
-
                 "template_5e8w01g",
-
                 form
-
             )
-
             .then(function () {
-
-                alert(
-                    "Message sent successfully ✅"
-                );
-
+                alert("Message sent successfully ✅");
                 form.reset();
-
-                button.disabled = false;
-
-                button.textContent =
-                    "Send Message";
-
             })
-
             .catch(function (error) {
-
-                console.error(
-                    "EMAILJS ERROR:",
-                    error
-                );
+                console.error("EMAILJS ERROR:", error);
 
                 alert(
                     "Message failed ❌\n\n" +
-                    (error.text ||
-                     error.message ||
-                     "Check EmailJS setup")
+                    (error.text || error.message || "Check EmailJS setup")
                 );
-
+            })
+            .finally(function () {
                 button.disabled = false;
-
-                button.textContent =
-                    "Send Message";
-
+                button.textContent = "Send Message";
             });
-
         });
-
     }
 
 
     /* ================= CHANGING TEXT ================= */
 
-    const changingText =
-        document.querySelector(".changing-text");
-
+    const changingText = document.querySelector(".changing-text");
 
     if (changingText) {
-
         const texts = [
-
             "Web Developer",
             "Frontend Developer",
             "Web Designer",
-            "Programmer"
-
+            "Programmer",
+            "Data Analyst"
         ];
 
-
         let textIndex = 0;
-
         let charIndex = 0;
-
         let deleting = false;
 
-
         function animateText() {
-
-            const currentText =
-                texts[textIndex];
-
+            const currentText = texts[textIndex];
 
             if (!deleting) {
-
-                changingText.textContent =
-                    currentText.substring(
-                        0,
-                        charIndex + 1
-                    );
-
                 charIndex++;
+                changingText.textContent = currentText.substring(0, charIndex);
 
-
-                if (
-                    charIndex ===
-                    currentText.length
-                ) {
-
+                if (charIndex >= currentText.length) {
                     deleting = true;
-
-                    setTimeout(
-                        animateText,
-                        1500
-                    );
-
+                    setTimeout(animateText, 1500);
                     return;
-
                 }
 
-
-                setTimeout(
-                    animateText,
-                    100
-                );
-
+                setTimeout(animateText, 100);
             } else {
-
-                changingText.textContent =
-                    currentText.substring(
-                        0,
-                        charIndex - 1
-                    );
-
                 charIndex--;
+                changingText.textContent = currentText.substring(0, charIndex);
 
-
-                if (charIndex === 0) {
-
+                if (charIndex <= 0) {
                     deleting = false;
-
-                    textIndex++;
-
-
-                    if (
-                        textIndex >=
-                        texts.length
-                    ) {
-
-                        textIndex = 0;
-
-                    }
-
-
-                    setTimeout(
-                        animateText,
-                        300
-                    );
-
+                    textIndex = (textIndex + 1) % texts.length;
+                    setTimeout(animateText, 300);
                     return;
-
                 }
 
-
-                setTimeout(
-                    animateText,
-                    50
-                );
-
+                setTimeout(animateText, 50);
             }
-
         }
 
-
         animateText();
-
     }
+
+
+    /* ================= DATA ANALYTICS FILTERS ================= */
+
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".project-card");
+
+    filterButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            const selectedFilter = button.dataset.filter;
+
+            filterButtons.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            projectCards.forEach(function (card) {
+                const category = card.dataset.category;
+
+                const shouldShow =
+                    selectedFilter === "all" ||
+                    category === selectedFilter;
+
+                card.classList.toggle("hidden", !shouldShow);
+            });
+        });
+    });
 
 });
