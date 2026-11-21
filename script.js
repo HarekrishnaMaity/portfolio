@@ -15,6 +15,7 @@ function toggleMenu(icon) {
 
 }
 
+
 /* ================= PROJECT LINKS ================= */
 
 function toggleLinks() {
@@ -27,9 +28,11 @@ function toggleLinks() {
 
 }
 
+
 /* ================= DOM CONTENT LOADED ================= */
 
 document.addEventListener("DOMContentLoaded", function () {
+
 
     /* ================= EMAILJS INITIALIZATION ================= */
 
@@ -40,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     }
+
 
     /* ================= CONTACT FORM ================= */
 
@@ -61,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+
             // EMAIL VALIDATION
 
             if (!emailPattern.test(email)) {
@@ -70,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
 
             }
+
 
             // CHECK EMAILJS
 
@@ -81,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
 
+
             // LOADING
 
             if (button) {
@@ -90,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 button.textContent = "Sending...";
 
             }
+
 
             // SEND EMAIL
 
@@ -136,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+
     /* ================= CHANGING TEXT ================= */
 
     const changingText = document.querySelector(".changing-text");
@@ -156,9 +165,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let deleting = false;
 
+
         function animateText() {
 
             const currentText = texts[textIndex];
+
 
             if (!deleting) {
 
@@ -167,7 +178,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 changingText.textContent =
                     currentText.substring(0, charIndex);
 
-                if (charIndex >= currentText.length) {
+
+                if (charIndex === currentText.length) {
 
                     deleting = true;
 
@@ -188,7 +200,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 changingText.textContent =
                     currentText.substring(0, charIndex);
 
-                if (charIndex <= 0) {
+
+                if (charIndex === 0) {
 
                     deleting = false;
 
@@ -206,9 +219,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
+
         animateText();
 
     }
+
 
     /* ================= DATA ANALYTICS FILTERS ================= */
 
@@ -216,11 +231,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const projectCards = document.querySelectorAll(".project-card");
 
+
     filterButtons.forEach(function (button) {
 
         button.addEventListener("click", function () {
 
             const selectedFilter = button.dataset.filter;
+
 
             // ACTIVE BUTTON
 
@@ -231,6 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             button.classList.add("active");
+
 
             // FILTER PROJECT CARDS
 
@@ -249,5 +267,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     });
+
 
 });
