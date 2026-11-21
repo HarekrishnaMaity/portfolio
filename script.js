@@ -146,85 +146,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ================= CHANGING TEXT ================= */
+// ================= CHANGING TEXT =================
 
-    const changingText = document.querySelector(".changing-text");
+const changingText = document.querySelector(".changing-text");
 
-    if (changingText) {
+if (changingText) {
+    const texts = [
+        "Web Developer",
+        "Frontend Developer",
+        "Web Designer",
+        "Programmer",
+        "Data Analyst"
+    ];
 
-        const texts = [
-            "Web Developer",
-            "Frontend Developer",
-            "Web Designer",
-            "Programmer",
-            "Data Analyst"
-        ];
+    let textIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
 
-        let textIndex = 0;
+    function typeText() {
+        const currentText = texts[textIndex];
 
-        let charIndex = 0;
+        if (deleting) {
+            charIndex--;
+            changingText.textContent = currentText.substring(0, charIndex);
 
-        let deleting = false;
-
-
-        function animateText() {
-
-            const currentText = texts[textIndex];
-
-
-            if (!deleting) {
-
-                charIndex++;
-
-                changingText.textContent =
-                    currentText.substring(0, charIndex);
-
-
-                if (charIndex === currentText.length) {
-
-                    deleting = true;
-
-                    setTimeout(animateText, 1500);
-
-                    return;
-
-                }
-
-                setTimeout(animateText, 100);
-
+            if (charIndex === 0) {
+                deleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(typeText, 400);
+                return;
             }
 
-            else {
+            setTimeout(typeText, 60);
 
-                charIndex--;
+        } else {
+            charIndex++;
+            changingText.textContent = currentText.substring(0, charIndex);
 
-                changingText.textContent =
-                    currentText.substring(0, charIndex);
-
-
-                if (charIndex === 0) {
-
-                    deleting = false;
-
-                    textIndex = (textIndex + 1) % texts.length;
-
-                    setTimeout(animateText, 300);
-
-                    return;
-
-                }
-
-                setTimeout(animateText, 50);
-
+            if (charIndex === currentText.length) {
+                deleting = true;
+                setTimeout(typeText, 1500);
+                return;
             }
 
+            setTimeout(typeText, 100);
         }
-
-
-        animateText();
-
     }
 
-
+    typeText();
+}
+   
     /* ================= DATA ANALYTICS FILTERS ================= */
 
     const filterButtons = document.querySelectorAll(".filter-btn");
